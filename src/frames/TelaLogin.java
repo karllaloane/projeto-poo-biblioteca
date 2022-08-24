@@ -1,11 +1,20 @@
 package frames;
 
+import biblioteca.*;
+import controle.*;
+import javax.swing.JOptionPane;
+
 public class TelaLogin extends javax.swing.JFrame {
 
+    Biblioteca biblioteca; 
+    Login login;
+    
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
+        biblioteca = Biblioteca.getInstance();
+        login = new Login();
         initComponents();
     }
 
@@ -24,7 +33,7 @@ public class TelaLogin extends javax.swing.JFrame {
         loginTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         senhaPasswordField = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        entrarButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         infoBiblioteca = new javax.swing.JLabel();
 
@@ -39,10 +48,10 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha");
 
-        jButton1.setText("Entrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        entrarButton.setText("Entrar");
+        entrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                entrarButtonActionPerformed(evt);
             }
         });
 
@@ -53,7 +62,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(entrarButton)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2)
                         .addComponent(jLabel1)
@@ -73,7 +82,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(senhaPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(entrarButton))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -137,13 +146,26 @@ public class TelaLogin extends javax.swing.JFrame {
         this.infoBiblioteca.setText(s);
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String login = loginTextField.getText();
-        char[] pwr = senhaPasswordField.getPassword();
-        String senha = new String(pwr);
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
+//        String user = loginTextField.getText();
+//        char[] pwr = senhaPasswordField.getPassword();
+//        String senha = new String(pwr);
+//        
+//        Funcionario f = login.buscaLogin(user, biblioteca.getFuncionarios());
+//        
+//        if(f == null){
+//            JOptionPane.showMessageDialog(null, "Usuario nao encontrado!", "Error", JOptionPane.ERROR_MESSAGE);
+//            this.loginTextField.setText("");
+//            this.senhaPasswordField.setText("");
+//        } else if(!f.getSenha().equals(senha)){
+//            JOptionPane.showMessageDialog(null, "Senha incorreta!", "Error", JOptionPane.ERROR_MESSAGE);
+//            this.senhaPasswordField.setText("");
+//        } else {
+//            this.dispose();  
+//            TelaPrincipal frame = new TelaPrincipal(biblioteca);
+//            frame.setVisible(true);
+//        }   
+    }//GEN-LAST:event_entrarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,8 +203,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton entrarButton;
     private javax.swing.JLabel infoBiblioteca;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

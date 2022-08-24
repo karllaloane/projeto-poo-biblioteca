@@ -20,14 +20,14 @@ public class Endereco {
             this.complemento = complemento;
     }
 
-    public Endereco(String cep, String cidade, String bairro, String rua, String complemento) {
-            super();
-            this.cep = cep;
-            this.cidade = cidade;
-            this.bairro = bairro;
-            this.rua = rua;
-            this.complemento = complemento;
-    }
+//    public Endereco(String cep, String cidade, String bairro, String rua, String complemento) {
+//            super();
+//            this.cep = cep;
+//            this.cidade = cidade;
+//            this.bairro = bairro;
+//            this.rua = rua;
+//            this.complemento = complemento;
+//    }
 
     public Endereco(String cep, String cidade, String bairro, String rua, int numero) {
             super();
@@ -38,13 +38,13 @@ public class Endereco {
             this.numero = numero;
     }
 
-    public Endereco(String cep, String cidade, String bairro, String rua) {
-            super();
-            this.cep = cep;
-            this.cidade = cidade;
-            this.bairro = bairro;
-            this.rua = rua;
-    }
+//    public Endereco(String cep, String cidade, String bairro, String rua) {
+//            super();
+//            this.cep = cep;
+//            this.cidade = cidade;
+//            this.bairro = bairro;
+//            this.rua = rua;
+//    }
 
     public String getCep() {
             return cep;
