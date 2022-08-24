@@ -353,7 +353,7 @@ public class JFCliente extends javax.swing.JFrame {
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
                 
-        jBSalvar.setEnabled(false);
+        jBSalvar.setEnabled(false);        
         jBNovo.setEnabled(true);
         desabilitaCampos();
         
@@ -405,6 +405,7 @@ public class JFCliente extends javax.swing.JFrame {
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed

@@ -1,6 +1,5 @@
 package biblioteca;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import frames.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -36,6 +35,7 @@ public class BibliotecaApp {
         
         biblio.addHistoricoEmprestimos(e);
 
+        
         //luis.devolverItem(0, LocalDate.of(2022,8,18));
                 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -50,6 +50,7 @@ public class BibliotecaApp {
                 tela.setVisible(true);
                 
                 tela.addWindowListener(new WindowAdapter() {
+                    @Override
                     public void windowClosing(WindowEvent e) {
                         System.out.println("fechou!");
                     }

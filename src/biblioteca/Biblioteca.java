@@ -99,13 +99,13 @@ public final class Biblioteca {
             return livros; 
         }
         
-        public ArrayList<Livro> listarPeriodicosNome(String nome){
-            ArrayList<Livro> livros = new ArrayList<>();
+        public ArrayList<Periodico> listarPeriodicosNome(String nome){
+            ArrayList<Periodico> livros = new ArrayList<>();
             
             for(int i = 0; i < itens.size(); i++){
                 if(itens.get(i) instanceof Periodico){
                     if(itens.get(i).getTitulo().contains(nome))
-                        livros.add((Livro)itens.get(i));
+                        livros.add((Periodico)itens.get(i));
                 }
             }
             

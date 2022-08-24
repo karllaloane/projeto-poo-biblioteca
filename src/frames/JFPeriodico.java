@@ -1,34 +1,37 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package frames;
 
 import biblioteca.*;
 import java.awt.Color;
+import java.time.Clock;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Karlla
+ * @author karll
  */
-public class JFLivro extends javax.swing.JFrame {
+public class JFPeriodico extends javax.swing.JFrame {
 
     private TelaPrincipal telaPrincipal;
     private Biblioteca biblioteca;
-    private Livro livro;
+    private Periodico periodico;
     private boolean alteracao;
     
-    DefaultTableModel tmLivro = new DefaultTableModel(null, new String[]{"Nome", "Autor", "Editora"});
+    DefaultTableModel tmPeriodico = new DefaultTableModel(null, new String[]{"Nome", "Editora", "Volume", "Data Publicação"});
     
     /**
-     * Creates new form JFLivro
+     * Creates new form JFPeriodico
      */
-    public JFLivro() {
+    public JFPeriodico() {
         initComponents();
-        
-        
     }
     
-    public JFLivro(TelaPrincipal telaPrincipal, Biblioteca b) {
+    public JFPeriodico(TelaPrincipal telaPrincipal, Biblioteca b) {
         this();
         
         this.telaPrincipal = telaPrincipal;
@@ -51,27 +54,23 @@ public class JFLivro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel7 = new javax.swing.JPanel();
         jBPesquisar = new javax.swing.JButton();
         jTFPesquisa = new javax.swing.JTextField();
-        jRBNome = new javax.swing.JRadioButton();
-        jRBAutor = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jTFNome = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTFAutor = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTFIsbn = new javax.swing.JTextField();
+        jTFVolume = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jTFEditora = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTFAno = new javax.swing.JTextField();
+        jTFNumero = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTFNumPag = new javax.swing.JTextField();
+        jTFDataPub = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jBNovo = new javax.swing.JButton();
         jBAlterar = new javax.swing.JButton();
@@ -79,19 +78,19 @@ public class JFLivro extends javax.swing.JFrame {
         jBSalvar = new javax.swing.JButton();
         jBSair = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jTFStatusEmp = new javax.swing.JTextField();
         jTFStatusRes = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Livros");
+        setTitle("Periódicos");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar Livro"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar Periódico"));
 
         jBPesquisar.setText("Pesquisar");
         jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,54 +106,33 @@ public class JFLivro extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup2.add(jRBNome);
-        jRBNome.setText("Título");
-        jRBNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBNomeActionPerformed(evt);
-            }
-        });
-
-        buttonGroup2.add(jRBAutor);
-        jRBAutor.setText("Autor");
-        jRBAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBAutorActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Título:");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jRBNome)
-                .addGap(18, 18, 18)
-                .addComponent(jRBAutor)
-                .addGap(27, 27, 27)
-                .addComponent(jTFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(28, 28, 28))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRBNome)
-                            .addComponent(jRBAutor)
-                            .addComponent(jTFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(tmLivro);
+        jTable1.setModel(tmPeriodico);
         jTable1.setColumnSelectionAllowed(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,21 +141,19 @@ public class JFLivro extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Livro"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Periódico"));
 
         jLabel7.setText("Título:");
 
-        jLabel8.setText("Autor:");
-
-        jLabel9.setText("ISBN:");
+        jLabel9.setText("Volume:");
 
         jLabel10.setText("Editora:");
 
-        jLabel11.setText("Ano Publicação:");
+        jLabel11.setText("Número:");
 
-        jLabel12.setText("Número de Páginas:");
+        jLabel12.setText("Data Publicação:");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -185,36 +161,27 @@ public class JFLivro extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTFAutor)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTFEditora)
-                        .addGap(44, 44, 44)))
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTFNumPag, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel10)
+                        .addGap(28, 28, 28)
+                        .addComponent(jTFEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTFAno, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTFDataPub))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(36, 36, 36)
+                        .addComponent(jTFNome)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTFVolume, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -225,20 +192,19 @@ public class JFLivro extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTFIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTFAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTFAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
+                        .addComponent(jTFEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTFEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jTFNumPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFDataPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
@@ -304,15 +270,15 @@ public class JFLivro extends javax.swing.JFrame {
                 .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Situação:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Situação:");
 
         jTFStatusEmp.setEditable(false);
         jTFStatusEmp.setBorder(null);
@@ -336,7 +302,7 @@ public class JFLivro extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel1)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTFStatusRes, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,7 +314,7 @@ public class JFLivro extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
                     .addComponent(jTFStatusEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jTFStatusRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,16 +325,18 @@ public class JFLivro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -377,16 +345,15 @@ public class JFLivro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -394,7 +361,7 @@ public class JFLivro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        
+
         jBSalvar.setEnabled(false);
         jBAlterar.setEnabled(false);
         jBExcluir.setEnabled(false);
@@ -402,41 +369,36 @@ public class JFLivro extends javax.swing.JFrame {
         limpaCampos();
         desabilitaCampos();
         limparSituacao();
-        
-        ArrayList<Livro> livros = new ArrayList<>();
-        
-        String texto = jTFPesquisa.getText();
-        
-        if(texto.equals("")){
-            JOptionPane.showMessageDialog(null, "Digite o nome do livro ou autor!", "Error", JOptionPane.ERROR_MESSAGE);
-            limpaCampos();
-        } else if(!jRBAutor.isSelected() && !jRBNome.isSelected()){
-            JOptionPane.showMessageDialog(null, "Selecione o tipo de busca (Nome ou Autor)!", "Error", JOptionPane.ERROR_MESSAGE);
-            limpaCampos();            
-        } else{
-            if(jRBAutor.isSelected()){
-                livros = biblioteca.listarLivrosAutor(texto);
-            } else {
-                livros = biblioteca.listarLivrosNome(texto);
-            }
 
-            if(livros.isEmpty()){
+        ArrayList<Periodico> periodico = new ArrayList<>();
+
+        String texto = jTFPesquisa.getText();
+
+        if(texto.equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o nome do Periódico!", "Error", JOptionPane.ERROR_MESSAGE);
+            limpaCampos();
+        } else {
+            
+            periodico = biblioteca.listarPeriodicosNome(texto);
+            
+            if(periodico.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Nenhum registro encontrado!", "Error", JOptionPane.ERROR_MESSAGE);
                 limpaCampos();
             } else {
                 limparTabela();
-                String[] linha = new String[] {null, null, null, null, null, null, null};
-            // P/ cada registro é criada uma nova linha, cada linha recebe os campos do registro
-                for (int i = 0; i < livros.size(); i++) {
-                    tmLivro.addRow(linha);
-                    tmLivro.setValueAt(livros.get(i).getTitulo(), i, 0);
-                    tmLivro.setValueAt(livros.get(i).getAutor(), i, 1);
-                    tmLivro.setValueAt(livros.get(i).getEditora(), i, 2);              
-                }            
+                String[] linha = new String[] {null, null, null, null};
+                // P/ cada registro é criada uma nova linha, cada linha recebe os campos do registro
+                for (int i = 0; i < periodico.size(); i++) {
+                    tmPeriodico.addRow(linha);
+                    tmPeriodico.setValueAt(periodico.get(i).getTitulo(), i, 0);
+                    tmPeriodico.setValueAt(periodico.get(i).getEditora(), i, 1);
+                    tmPeriodico.setValueAt(periodico.get(i).getVolume(), i, 2);
+                    tmPeriodico.setValueAt(periodico.get(i).getDataPublicacao(), i, 3);
+                }
             }
-            
+
         }
-        
+
         jTFPesquisa.setText("");
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
@@ -445,19 +407,45 @@ public class JFLivro extends javax.swing.JFrame {
         System.out.println("CLicou!!!");
     }//GEN-LAST:event_jTFPesquisaActionPerformed
 
-    private void jRBNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBNomeActionPerformed
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRBNomeActionPerformed
+        int linhaSelecionada = jTable1.getSelectedRow();
+        desabilitaCampos();
 
-    private void jRBAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRBAutorActionPerformed
+        try{
+            //procurando pelo objeto com nome exato
+            periodico = (Periodico) biblioteca.procurarItem((String)jTable1.getValueAt(linhaSelecionada, 0));
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-        telaPrincipal.setEnabled(true);
-        telaPrincipal.setVisible(true);
-    }//GEN-LAST:event_formWindowClosed
+            jTFNumero.setText("" + periodico.getNumero());
+            jTFEditora.setText(periodico.getEditora());
+            jTFVolume.setText(""+periodico.getVolume());
+            jTFNome.setText(periodico.getTitulo());
+            jTFDataPub.setText("" + periodico.getDataPublicacao());
+
+            if(periodico.isReservado()){
+                jTFStatusRes.setText("Periódico reservado!");
+            } else {
+                jTFStatusRes.setText("Não possui reservas!");
+            }
+
+            if(periodico.isDisponivel()){
+                jTFStatusEmp.setText("DISPONÍVEL");
+                jTFStatusEmp.setForeground(Color.GREEN);
+            } else {
+                jTFStatusEmp.setText("INDISPONÍVEL");
+                jTFStatusEmp.setForeground(Color.red);
+            }
+
+            jBAlterar.setEnabled(true);
+            jBExcluir.setEnabled(true);
+
+        } catch (BuscaFalhouException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            limpaCampos();
+            jBAlterar.setEnabled(false);
+            jBExcluir.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
         // TODO add your handling code here:
@@ -473,7 +461,7 @@ public class JFLivro extends javax.swing.JFrame {
 
     private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
         // TODO add your handling code here:
-        
+
         habilitaCampos();
         jBSalvar.setEnabled(true);
         jBNovo.setEnabled(false);
@@ -485,48 +473,46 @@ public class JFLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int resp = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir este registro?",
-                    "Confirmação!", JOptionPane.YES_NO_OPTION);
-        
+            "Confirmação!", JOptionPane.YES_NO_OPTION);
+
         //se for sim
         if(resp == JOptionPane.YES_NO_OPTION){
-            
-            biblioteca.getItens().remove(livro);
-            
+
+            biblioteca.getItens().remove(periodico);
+
             limpaCampos();
             desabilitaCampos();
-            limparSituacao();
             jBExcluir.setEnabled(false);
             jBAlterar.setEnabled(false);
+            limparSituacao();
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         // TODO add your handling code here:
         String titulo = jTFNome.getText();
-        String autor = jTFAutor.getText();
-        int ano = Integer.parseInt(jTFAno.getText());
-        int numP = Integer.parseInt(jTFNumPag.getText());
+        int numero = Integer.parseInt(jTFNumero.getText());
+        String dataPubli = jTFDataPub.getText();
         String editora = jTFEditora.getText();
-        String isbn = jTFIsbn.getText();
-        
+        int volume = Integer.parseInt(jTFVolume.getText());
+
         if(alteracao){
-            
-            livro.setAnoPublicacao(ano);
-            livro.setAutor(autor);
-            livro.setEditora(editora);
-            livro.setIsbn(isbn);
-            livro.setNumPaginas(numP);
-            livro.setTitulo(titulo);
-            
+
+            periodico.setNumero(numero);
+            periodico.setEditora(editora);
+            periodico.setVolume(volume);
+            periodico.setDataPublicacao(dataPubli);
+            periodico.setTitulo(titulo);
+
             this.alteracao = false;
-            
-            JOptionPane.showMessageDialog(null, "Livro alterado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Periódico alterado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            Livro l = new Livro(titulo, editora, isbn, autor, ano, numP);
-            biblioteca.addItens(l);
-            JOptionPane.showMessageDialog(null, "Livro incluido com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            Periodico p = new Periodico(titulo, editora, volume, numero, dataPubli);
+            biblioteca.addItens(p);
+            JOptionPane.showMessageDialog(null, "Periódico incluido com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
         jBNovo.setEnabled(true);
         jBExcluir.setEnabled(true);
         jBAlterar.setEnabled(true);
@@ -547,78 +533,41 @@ public class JFLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFStatusResActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        int linhaSelecionada = jTable1.getSelectedRow();
-        desabilitaCampos();
         
-        try{
-            //procurando pelo objeto com nome exato
-            livro = (Livro) biblioteca.procurarItem((String)jTable1.getValueAt(linhaSelecionada, 0));
-            
-            jTFAno.setText("" + livro.getAnoPublicacao());
-            jTFAutor.setText(livro.getAutor());
-            jTFEditora.setText(livro.getEditora());
-            jTFIsbn.setText(livro.getIsbn());
-            jTFNome.setText(livro.getTitulo());
-            jTFNumPag.setText("" + livro.getNumPaginas());
-            
-            if(livro.isReservado()){
-                jTFStatusRes.setText("Livro reservado!");
-            } else {
-                jTFStatusRes.setText("Não possui reservas!");
-            }
-            
-            if(livro.isDisponivel()){
-                jTFStatusEmp.setText("DISPONÍVEL");
-                jTFStatusEmp.setForeground(Color.GREEN);
-            } else {
-                jTFStatusEmp.setText("INDISPONÍVEL");
-                jTFStatusEmp.setForeground(Color.red);
-            }
-            
-            jBAlterar.setEnabled(true);
-            jBExcluir.setEnabled(true);
-            
-        } catch (BuscaFalhouException e){
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            limpaCampos();
-            jBAlterar.setEnabled(false);
-            jBExcluir.setEnabled(false);
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
+        telaPrincipal.setEnabled(true);
+        telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     private void desabilitaCampos(){
-        jTFAno.setEditable(false);
-        jTFAutor.setEditable(false);
+        jTFNumero.setEditable(false);
         jTFEditora.setEditable(false);
-        jTFIsbn.setEditable(false);
+        jTFVolume.setEditable(false);
         jTFNome.setEditable(false);
-        jTFNumPag.setEditable(false);
+        jTFDataPub.setEditable(false);
     }
     
     private void habilitaCampos(){
-        jTFAno.setEditable(true);
-        jTFAutor.setEditable(true);
+        jTFNumero.setEditable(true);
         jTFEditora.setEditable(true);
-        jTFIsbn.setEditable(true);
+        jTFVolume.setEditable(true);
         jTFNome.setEditable(true);
-        jTFNumPag.setEditable(true);
+        jTFDataPub.setEditable(true);
     }
     
     private void limpaCampos(){
-        jTFAno.setText("");
-        jTFAutor.setText("");
+        jTFNumero.setText("");
         jTFEditora.setText("");
-        jTFIsbn.setText("");
+        jTFVolume.setText("");
         jTFNome.setText("");
-        jTFNumPag.setText("");
+        jTFDataPub.setText("");
     }
     
     // Limpa a tabela de resultados
     private void limparTabela() {       
-        while (tmLivro.getRowCount() > 0) {            
-            tmLivro.removeRow(0);
+        while (tmPeriodico.getRowCount() > 0) {            
+            tmPeriodico.removeRow(0);
         }
     }
     
@@ -644,26 +593,25 @@ public class JFLivro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPeriodico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFLivro().setVisible(true);
+                new JFPeriodico().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBAlterar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBNovo;
@@ -674,25 +622,22 @@ public class JFLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRBAutor;
-    private javax.swing.JRadioButton jRBNome;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFAno;
-    private javax.swing.JTextField jTFAutor;
+    private javax.swing.JTextField jTFDataPub;
     private javax.swing.JTextField jTFEditora;
-    private javax.swing.JTextField jTFIsbn;
     private javax.swing.JTextField jTFNome;
-    private javax.swing.JTextField jTFNumPag;
+    private javax.swing.JTextField jTFNumero;
     private javax.swing.JTextField jTFPesquisa;
     private javax.swing.JTextField jTFStatusEmp;
     private javax.swing.JTextField jTFStatusRes;
+    private javax.swing.JTextField jTFVolume;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

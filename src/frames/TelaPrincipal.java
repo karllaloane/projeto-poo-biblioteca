@@ -36,13 +36,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuUser = new javax.swing.JMenu();
-        jMenuItemLogout = new javax.swing.JMenuItem();
-        jMenuItemSair = new javax.swing.JMenuItem();
         jMenuCliente = new javax.swing.JMenu();
         jMenuItemCliente = new javax.swing.JMenuItem();
         jMenuLivros = new javax.swing.JMenu();
         jMenuItemLivro = new javax.swing.JMenuItem();
+        jMenuPeriodico = new javax.swing.JMenu();
+        jMenuItemPeriodico = new javax.swing.JMenuItem();
         jMenuEmprestimo = new javax.swing.JMenu();
         jMenuItemCriarEmp = new javax.swing.JMenuItem();
         jMenuItemBuscarEmp = new javax.swing.JMenuItem();
@@ -63,26 +62,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
-
-        jMenuUser.setText("Usuário");
-
-        jMenuItemLogout.setText("Logout");
-        jMenuItemLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemLogoutActionPerformed(evt);
-            }
-        });
-        jMenuUser.add(jMenuItemLogout);
-
-        jMenuItemSair.setText("Sair");
-        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSairActionPerformed(evt);
-            }
-        });
-        jMenuUser.add(jMenuItemSair);
-
-        jMenuBar1.add(jMenuUser);
 
         jMenuCliente.setText("Cliente");
 
@@ -107,6 +86,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuLivros.add(jMenuItemLivro);
 
         jMenuBar1.add(jMenuLivros);
+
+        jMenuPeriodico.setText("Periódicos");
+
+        jMenuItemPeriodico.setText("Consultar Periódicos");
+        jMenuItemPeriodico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPeriodicoActionPerformed(evt);
+            }
+        });
+        jMenuPeriodico.add(jMenuItemPeriodico);
+
+        jMenuBar1.add(jMenuPeriodico);
 
         jMenuEmprestimo.setText("Empréstimos");
 
@@ -178,14 +169,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemLogoutActionPerformed
-
-    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemSairActionPerformed
-
     private void jMenuItemInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInfoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemInfoActionPerformed
@@ -224,6 +207,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
 
     }//GEN-LAST:event_formWindowClosed
+
+    private void jMenuItemPeriodicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPeriodicoActionPerformed
+        // TODO add your handling code here:
+       JFPeriodico jfp = new JFPeriodico(this, biblioteca);
+       jfp.setLocationRelativeTo(rootPane);
+       jfp.setVisible(true);
+       
+       // Desativa funcionalidades da tabela principal
+       this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItemPeriodicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,11 +267,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemHistEmp;
     private javax.swing.JMenuItem jMenuItemInfo;
     private javax.swing.JMenuItem jMenuItemLivro;
-    private javax.swing.JMenuItem jMenuItemLogout;
-    private javax.swing.JMenuItem jMenuItemSair;
+    private javax.swing.JMenuItem jMenuItemPeriodico;
     private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JMenuItem jMenuItemTotalMulta;
     private javax.swing.JMenu jMenuLivros;
-    private javax.swing.JMenu jMenuUser;
+    private javax.swing.JMenu jMenuPeriodico;
     // End of variables declaration//GEN-END:variables
 }
