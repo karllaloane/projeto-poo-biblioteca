@@ -23,14 +23,12 @@ public class Cliente extends Pessoa {
     public Emprestimo realizarEmprestimo(ItemAcervo item, LocalDate data) {
 
             if(!item.isDisponivel()) {
-                    System.out.println("O livro nao esta disponivel!");
-                    return null;
+                    throw new ItemIndisponivelException("O livro nao esta disponivel!");
             }
 
             if(item.isReservado()) {
                     if(!item.getReserva().getCliente().equals(this)) {
-                            System.out.println("O livro ja esta reservado pra outra pessoa!");
-                            return null;
+                            throw new ItemIndisponivelException("O livro ja esta reservado pra outra pessoa!");
                     } else {
                             item.setReservado(false);
                             item.setReserva(null);
