@@ -124,6 +124,7 @@
         <Component class="javax.swing.JTextField" name="jTFCpfPesquisa">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFCpfPesquisaActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFCpfPesquisaKeyTyped"/>
           </Events>
         </Component>
       </SubComponents>
@@ -285,8 +286,14 @@
         <Component class="javax.swing.JTextField" name="jTNome">
         </Component>
         <Component class="javax.swing.JTextField" name="jTCpf">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTCpfKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFone">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFoneKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTEmail">
         </Component>
@@ -317,6 +324,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTCep">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTCepKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
@@ -324,6 +334,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTNumero">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTNumeroKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
@@ -391,6 +404,7 @@
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBSalvarMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalvarActionPerformed"/>
           </Events>
         </Component>
