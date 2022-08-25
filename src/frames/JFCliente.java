@@ -108,6 +108,11 @@ public class JFCliente extends javax.swing.JFrame {
                 jTFCpfPesquisaActionPerformed(evt);
             }
         });
+        jTFCpfPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCpfPesquisaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,6 +150,18 @@ public class JFCliente extends javax.swing.JFrame {
 
         jLabel8.setText("Email:");
 
+        jTCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTCpfKeyTyped(evt);
+            }
+        });
+
+        jTFone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFoneKeyTyped(evt);
+            }
+        });
+
         jLabel9.setText("Cidade:");
 
         jLabel10.setText("Bairro:");
@@ -153,7 +170,19 @@ public class JFCliente extends javax.swing.JFrame {
 
         jLabel12.setText("CEP:");
 
+        jTCep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTCepKeyTyped(evt);
+            }
+        });
+
         jLabel13.setText("Número:");
+
+        jTNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTNumeroKeyTyped(evt);
+            }
+        });
 
         jLabel14.setText("Complemento:");
 
@@ -261,6 +290,11 @@ public class JFCliente extends javax.swing.JFrame {
         });
 
         jBSalvar.setText("Salvar");
+        jBSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBSalvarMouseClicked(evt);
+            }
+        });
         jBSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalvarActionPerformed(evt);
@@ -440,8 +474,17 @@ public class JFCliente extends javax.swing.JFrame {
         String bairro = jTBairro.getText();
         String rua = jTRua.getText();
         String cep = jTCep.getText();
-        int numero = Integer.parseInt(jTNumero.getText());
+        String numeroString = jTNumero.getText();
         String comp = jTComplemento.getText();
+        
+        if(nome.isBlank()||cpf.isBlank()||fone.isBlank()||email.isBlank()||
+                cidade.isBlank()||bairro.isBlank()||rua.isBlank()||cep.isBlank()
+                || numeroString.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int numero = Integer.parseInt(numeroString);
         
         if(alteracao){
             cliente.setNome(nome);
@@ -480,6 +523,50 @@ public class JFCliente extends javax.swing.JFrame {
         jBSalvar.setEnabled(false);
         desabilitaCampos();
     }//GEN-LAST:event_jBSalvarActionPerformed
+
+    private void jTFCpfPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCpfPesquisaKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFCpfPesquisaKeyTyped
+
+    private void jTCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCpfKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTCpfKeyTyped
+
+    private void jTFoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFoneKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFoneKeyTyped
+
+    private void jTCepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCepKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTCepKeyTyped
+
+    private void jTNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNumeroKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTNumeroKeyTyped
+
+    private void jBSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBSalvarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBSalvarMouseClicked
     
     private void exibeCliente(Cliente c){
         jTNome.setText(c.getNome());

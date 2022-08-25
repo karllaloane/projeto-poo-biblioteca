@@ -70,7 +70,7 @@ public class JFPeriodico extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTFNumero = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTFDataPub = new javax.swing.JTextField();
+        jTFDataPub = new javax.swing.JFormattedTextField();
         jPanel9 = new javax.swing.JPanel();
         jBNovo = new javax.swing.JButton();
         jBAlterar = new javax.swing.JButton();
@@ -149,11 +149,30 @@ public class JFPeriodico extends javax.swing.JFrame {
 
         jLabel9.setText("Volume:");
 
+        jTFVolume.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFVolumeKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("Editora:");
 
         jLabel11.setText("Número:");
 
+        jTFNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNumeroKeyTyped(evt);
+            }
+        });
+
         jLabel12.setText("Data Publicação:");
+
+        jTFDataPub.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        jTFDataPub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFDataPubActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -169,7 +188,7 @@ public class JFPeriodico extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(jTFDataPub))
+                        .addComponent(jTFDataPub, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(36, 36, 36)
@@ -492,10 +511,19 @@ public class JFPeriodico extends javax.swing.JFrame {
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         // TODO add your handling code here:
         String titulo = jTFNome.getText();
-        int numero = Integer.parseInt(jTFNumero.getText());
+        String numeroString = jTFNumero.getText();
         String dataPubli = jTFDataPub.getText();
         String editora = jTFEditora.getText();
-        int volume = Integer.parseInt(jTFVolume.getText());
+        String volumeString = jTFVolume.getText();
+        
+        if(titulo.isBlank()||numeroString.isBlank()||dataPubli.isBlank()||editora.isBlank()||
+                volumeString.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int numero = Integer.parseInt(numeroString);
+        int volume = Integer.parseInt(volumeString);
 
         if(alteracao){
 
@@ -540,6 +568,26 @@ public class JFPeriodico extends javax.swing.JFrame {
         telaPrincipal.setEnabled(true);
         telaPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void jTFNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNumeroKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFNumeroKeyTyped
+
+    private void jTFVolumeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFVolumeKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFVolumeKeyTyped
+
+    private void jTFDataPubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDataPubActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDataPubActionPerformed
 
     private void desabilitaCampos(){
         jTFNumero.setEditable(false);
@@ -631,7 +679,7 @@ public class JFPeriodico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFDataPub;
+    private javax.swing.JFormattedTextField jTFDataPub;
     private javax.swing.JTextField jTFEditora;
     private javax.swing.JTextField jTFNome;
     private javax.swing.JTextField jTFNumero;

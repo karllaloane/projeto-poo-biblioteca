@@ -173,11 +173,29 @@ public class JFLivro extends javax.swing.JFrame {
 
         jLabel9.setText("ISBN:");
 
+        jTFIsbn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFIsbnKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("Editora:");
 
         jLabel11.setText("Ano Publicação:");
 
+        jTFAno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFAnoKeyTyped(evt);
+            }
+        });
+
         jLabel12.setText("Número de Páginas:");
+
+        jTFNumPag.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNumPagKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -504,11 +522,21 @@ public class JFLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
         String titulo = jTFNome.getText();
         String autor = jTFAutor.getText();
-        int ano = Integer.parseInt(jTFAno.getText());
-        int numP = Integer.parseInt(jTFNumPag.getText());
+        String anoString = jTFAno.getText();
+        String numPString = jTFNumPag.getText();
         String editora = jTFEditora.getText();
         String isbn = jTFIsbn.getText();
         
+        if(titulo.isBlank()||autor.isBlank()||editora.isBlank()||isbn.isBlank()||
+                anoString.isBlank()||numPString.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int ano = Integer.parseInt(anoString);
+        int numP = Integer.parseInt(numPString);
+              
+   
         if(alteracao){
             
             livro.setAnoPublicacao(ano);
@@ -588,6 +616,30 @@ public class JFLivro extends javax.swing.JFrame {
             jBExcluir.setEnabled(false);
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTFIsbnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIsbnKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFIsbnKeyTyped
+
+    private void jTFAnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAnoKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFAnoKeyTyped
+
+    private void jTFNumPagKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNumPagKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFNumPagKeyTyped
 
     private void desabilitaCampos(){
         jTFAno.setEditable(false);
