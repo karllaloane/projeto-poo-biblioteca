@@ -1,7 +1,9 @@
 package biblioteca;
 
+import java.io.Serializable;
 
-public class Endereco {
+
+public class Endereco implements Serializable{
 
     private String cep;
     private String cidade;

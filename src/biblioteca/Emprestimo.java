@@ -1,9 +1,10 @@
 package biblioteca;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Emprestimo implements Publicavel{
+public class Emprestimo implements Publicavel, Serializable{
 	
     private static int maxRenovacao = 3;
     private int quantRenovado = 0;

@@ -1,7 +1,9 @@
 package biblioteca;
 
+import java.io.Serializable;
 
-public class Periodico extends ItemAcervo{
+
+public class Periodico extends ItemAcervo implements Serializable{
 
     private int volume;
     private int numero;

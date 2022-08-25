@@ -1,6 +1,8 @@
 package biblioteca;
 
-public class Pessoa {
+import java.io.Serializable;
+
+public class Pessoa implements Serializable{
     private String nome;
     private String cpf;
     private String telefone;

@@ -18,7 +18,7 @@ public final class Biblioteca {
 		this.setCnpj("123456/0000");
 		setHistoricoEmprestimos(new ArrayList<Emprestimo>());
 		setItens(new ArrayList<ItemAcervo>());
-		setClientes(new ArrayList<Cliente>());		
+		setClientes(new ArrayList<Cliente>());	
 	}
 	
 	public static Biblioteca biblioteca;
@@ -71,14 +71,10 @@ public final class Biblioteca {
             ArrayList<Livro> livros = new ArrayList<>();
             
             for(int i = 0; i < itens.size(); i++){
-                if(itens.get(i) instanceof Livro){
-                    System.out.println("Eh livro " + itens.get(i).getTitulo());
-                    
+                if(itens.get(i) instanceof Livro){                    
                     if(itens.get(i).getTitulo().toLowerCase().contains(nome.toLowerCase())){
-                        System.out.println("\nLivro " + itens.get(i).getTitulo());
                         livros.add((Livro)itens.get(i));
-                    }
-                        
+                    } 
                 }
             }
             

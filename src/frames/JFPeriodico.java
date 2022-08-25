@@ -442,6 +442,7 @@ public class JFPeriodico extends javax.swing.JFrame {
         } catch (BuscaFalhouException e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
             limpaCampos();
+            limparSituacao();
             jBAlterar.setEnabled(false);
             jBExcluir.setEnabled(false);
         }

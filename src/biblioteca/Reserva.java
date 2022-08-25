@@ -1,8 +1,9 @@
 package biblioteca;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Reserva implements Publicavel {
+public class Reserva implements Publicavel, Serializable{
 	private LocalDate dataReserva;
 	private Cliente cliente;
 	

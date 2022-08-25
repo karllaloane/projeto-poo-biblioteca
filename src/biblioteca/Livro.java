@@ -1,8 +1,10 @@
 
 package biblioteca;
 
+import java.io.Serializable;
 
-public class Livro extends ItemAcervo {
+
+public class Livro extends ItemAcervo implements Serializable {
 	
     private String isbn;
     private String autor;
