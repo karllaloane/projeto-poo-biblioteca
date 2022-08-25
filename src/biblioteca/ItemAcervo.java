@@ -31,7 +31,7 @@ public abstract class ItemAcervo implements Serializable{
 
     public boolean registrarReserva(Cliente c, LocalDate data) {
             if(this.isReservado()) {
-                    System.out.println("O livro ja esta reservado");
+                    //System.out.println("O livro ja esta reservado");
                     return false;
             }
             this.setReserva(new Reserva(c, data));

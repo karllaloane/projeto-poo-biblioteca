@@ -622,6 +622,8 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 
                 limparTabela();
+                jBEmprestar.setEnabled(false);
+                limparCampos();
                 
             } catch (ItemIndisponivelException e){
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -655,10 +657,40 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void jBReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReservarActionPerformed
-        // TODO add your handling code here:
+        
+        LocalDate ld = null;
+        boolean ok = true;
+        
         if(jTFNome.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Necessário informar o cliente para realizar o empréstimo!", "Error", JOptionPane.ERROR_MESSAGE);
-        } 
+            ok = false;
+        }
+        if(jTFDia.getText().equals("") || jTFMes.getText().equals("") || jTFAno.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Informe a data!", "Error", JOptionPane.ERROR_MESSAGE);
+            ok = false;
+        } else {
+            int dia = Integer.parseInt(jTFDia.getText());
+            int mes = Integer.parseInt(jTFMes.getText());
+            int ano = Integer.parseInt(jTFAno.getText());
+        
+            ld = LocalDate.of(ano, mes, dia);
+        }
+        
+        if(ok){
+            if(item.registrarReserva(cliente, ld)){
+                String mensagem = "A reserva do livro/periódico \n"
+                        + item.getTitulo() + " foi realizada com sucesso\n"
+                        + "para " + cliente.getNome() + "\n";
+                JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                
+                limparTabela();
+                jBReservar.setEnabled(false);
+                limparCampos();
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "O livro já está reservado!", "Falha", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jBReservarActionPerformed
 
     public void exibeCliente(Cliente c){
@@ -671,6 +703,15 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
         while (tmLivro.getRowCount() > 0) {            
             tmLivro.removeRow(0);
         }
+    }
+    
+    private void limparCampos(){
+        jTFNome.setText("");
+        jTFCpf.setText("");
+        jTFLivro.setText("");
+        jTFDia.setText("");
+        jTFMes.setText("");
+        jTFAno.setText("");
     }
     
     /**
