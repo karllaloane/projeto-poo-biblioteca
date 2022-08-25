@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Karlla
  */
+
 public class JFLivro extends javax.swing.JFrame {
 
     private TelaPrincipal telaPrincipal;
@@ -23,9 +24,7 @@ public class JFLivro extends javax.swing.JFrame {
      * Creates new form JFLivro
      */
     public JFLivro() {
-        initComponents();
-        
-        
+        initComponents();        
     }
     
     public JFLivro(TelaPrincipal telaPrincipal, Biblioteca b) {

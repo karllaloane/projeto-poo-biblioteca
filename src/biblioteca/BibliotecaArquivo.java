@@ -87,7 +87,7 @@ public class BibliotecaArquivo {
     }
     
     public void gravarCliente(ArrayList<Cliente> cliente) throws IOException{
-        FileOutputStream caminho = new FileOutputStream("emprestimo.txt");
+        FileOutputStream caminho = new FileOutputStream("cliente.txt");
         ObjectOutputStream oos = new ObjectOutputStream(caminho);
 	oos.writeObject(cliente);
 	oos.close();

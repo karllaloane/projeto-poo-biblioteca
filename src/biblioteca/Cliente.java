@@ -27,12 +27,12 @@ public class Cliente extends Pessoa {
             }
 
             if(item.isReservado()) {
-                    if(!item.getReserva().getCliente().equals(this)) {
-                            throw new ItemIndisponivelException("O livro ja esta reservado pra outra pessoa!");
-                    } else {
-                            item.setReservado(false);
-                            item.setReserva(null);
-                    }
+                if(!item.getReserva().getCliente().equals(this)) {
+                        throw new ItemIndisponivelException("O livro ja esta reservado pra outra pessoa!");
+                } else {
+                    item.setReservado(false);
+                    item.setReserva(null);
+                }
             }
 
             Emprestimo e = new Emprestimo(this, item, data);
@@ -116,6 +116,7 @@ public class Cliente extends Pessoa {
     public void setPenalizado(boolean penalizado) {
             this.penalizado = penalizado;
     }
+    
 
     @Override
     public String toString() {
