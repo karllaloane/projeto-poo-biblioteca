@@ -3,6 +3,12 @@ package biblioteca;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/** Classe criada para representar um cliente, que herda da classe Pessoa
+ * Possui como atributos o número máximo de empréstimos que o Cliente pode realizar,
+ * se ele está ou não penalizado, bem como uma lista com os empréstimos atuais
+ * @version 1.0
+ * @since release 1
+ */
 public class Cliente extends Pessoa {
 
     private static int maximoEmprestimo = 2; //Pensar em uma melhor forma de armazenar
@@ -19,7 +25,16 @@ public class Cliente extends Pessoa {
             setPenalizado(false);
     }
 
-
+    /** Método que recebe um ItemAcervo e um LocalDate, verifica se o item está
+     * disponível (não está emprestado ou reservado), bem como se o cliente pode
+     * realizar o empréstimo (não está penalizado, nem excedeu o número máximo de
+     * empréstimos ativos.
+     * 
+     * @param item - ItemAcervo - item objeto do empréstimo
+     * @param data - LocalDate - data em que o empréstimo está sendo realizado
+     *
+     * @return objeto da classe Emprestimo
+     */
     public Emprestimo realizarEmprestimo(ItemAcervo item, LocalDate data) {
 
             if(!item.isDisponivel()) {
@@ -54,7 +69,11 @@ public class Cliente extends Pessoa {
             return e;
     }
 
-
+    /** Método criado para representar a devolução de item que está emprestado
+     * 
+     * @param i - representa a posição do empréstimo na lista de empréstimos
+     * @param data - LocalDate - data que a devolução está ocorrendo
+     */
     public void devolverItem(int i, LocalDate data) {
 
             double multa = 0;
@@ -73,7 +92,10 @@ public class Cliente extends Pessoa {
 
     }
 
-
+    /** Método criado para representar o pagamento de eventual multa devida pelo
+     * cliente.
+    * 
+    */
     public void pagarMulta() {
 
             double valorTotal = 0;
@@ -94,41 +116,62 @@ public class Cliente extends Pessoa {
             this.setPenalizado(false);
     }
 
-
-    public void exibirEmprestimosAtuais() {
-            if(this.emprestimosAtuais.size() == 0)
-                    System.out.println("O cliente nao possui emprestimos atuais!");
-            else {
-                    for(int i = 1; i <= this.emprestimosAtuais.size(); i++) {
-                            System.out.println(i + " - " + this.emprestimosAtuais.get(i).retornaDados());
-                    }
-            }
-    }
-    
-
     /**************************************************************************************************/
 
+    /** Método que retorna a quantidade de empréstimos atuais do cliente.
+     * 
+     * @return int - quantidade de empréstimos atuais do cliente
+     */
     public int quantidadeEmprestimosAtuais() {
             return this.emprestimosAtuais.size();
     }
 
+    /** Método que retorna o número máximo de empréstimos simultâneos que o
+     * cliente pode realizar.
+     * 
+     * @return int - número máximo de empréstimos
+     */
     public static int getMaximoEmprestimo() {
             return maximoEmprestimo;
     }
 
+    /** Método que atribui o número máximo de empréstimos simultâneos que os clientes
+     * podem realizar.
+     * 
+     * @param maximoEmprestimo - int - número máximo de empréstimos
+     */
     public static void setMaximoEmprestimo(int maximoEmprestimo) {
             Cliente.maximoEmprestimo = maximoEmprestimo;
     }
 
+    /** Método que retorna um valor booleano sobre o cliente estar ou não penalizado
+     * 
+     * @return boolean - true se o cliente está penalizado, false caso contrário
+     */
     public boolean isPenalizado() {
             return penalizado;
     }
 
+    /** Método que define o valor do atributo penalizado
+     * 
+     * @param penalizado - boolean
+     */
     public void setPenalizado(boolean penalizado) {
             this.penalizado = penalizado;
     }
     
-
+    /** Método que retorna a lista de empréstimos atuais
+     * 
+     * @return ArrayList de Emprestimo
+     */
+    public ArrayList<Emprestimo> getEmprestimosAtuais() {
+        return this.emprestimosAtuais;
+    }
+    
+    /** Método toString que retorna os dados do objeto
+     * 
+     * @return String - dados do cliente
+     */
     @Override
     public String toString() {
             return super.toString() +

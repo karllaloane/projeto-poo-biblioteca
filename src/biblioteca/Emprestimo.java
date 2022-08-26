@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+/** Classe que representa um empréstimo, que armazena o número máximo de renovações,
+ * a quantidade de vezes que um empréstimo foi renovado, o total de empréstimos realizados; 
+ * o ID, o valor da multa por atraso, se a multa foi paga e se o empréstimo gerou multa;
+ * a data do empréstimo, a data prevista de devolução e a data em que esta efetivamento ocorreu;
+ * o cliente que realizou o empréstimo e o item objeto do empréstimo.
+ * 
+ * 
+ */
 public class Emprestimo implements Publicavel, Serializable{
 	
     private static int maxRenovacao = 3;

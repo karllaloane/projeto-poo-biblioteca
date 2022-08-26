@@ -78,7 +78,7 @@ public final class Biblioteca {
          * por títulos que correspondam ao nome exato
          * @param titulo - String com trecho do título do item buscado
          * @return i - ItemAcervo - objetos localizados com o título informado
-         * @throws BuscaFalhouException se não for localizado item
+         *
          */
 	public ItemAcervo procurarItem(String titulo) {
 		
@@ -95,7 +95,7 @@ public final class Biblioteca {
          * 
          * @param cpf - String
          * @return c - Cliente com o cpf informado
-         * @throws BuscaFalhouException se não for localizado cliente
+         *
          */
 	public Cliente procurarCliente(String cpf) {
 		

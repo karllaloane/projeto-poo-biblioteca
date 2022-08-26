@@ -10,15 +10,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-/**
+/** Classe criada para leitura/escrita de arquivos e persistência de dados
+ * 
+ * @version 1.0
+ * @since release 1
  *
- * @author karll
+ * @author karlla
  */
 public class BibliotecaArquivo {
     private File clienteFile;
     private File emprestimoFile;
     private File itemFile;
 
+    
     public BibliotecaArquivo() throws IOException{
         clienteFile = new File("cliente.txt");
         emprestimoFile = new File("emprestimo.txt");
