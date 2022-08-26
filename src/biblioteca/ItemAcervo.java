@@ -34,6 +34,12 @@ public abstract class ItemAcervo implements Serializable{
                     //System.out.println("O livro ja esta reservado");
                     return false;
             }
+            
+            for(Emprestimo e: c.getEmprestimosAtuais()) {
+                if(e.getItem().equals(this))
+                    throw new ClienteComPendenciaException("O cliente já está com este item");
+            }
+            
             this.setReserva(new Reserva(c, data));
             this.setReservado(true);
 
