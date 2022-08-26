@@ -594,19 +594,8 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
 
         //pode validar a data aqui
         
-        //exceção
-        //if(cliente.isPenalizado()){
-        //    JOptionPane.showMessageDialog(null, "O cliente possui multas pendentes!\nImpossível "
-        //            + "realizar o empréstimo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        //    ok = false;
-        //} else if(cliente.quantidadeEmprestimosAtuais() == cliente.getMaximoEmprestimo()){
-        //    JOptionPane.showMessageDialog(null, "O cliente já possui dois empréstiomos ativos!\nImpossível "
-        //            + "realizar o empréstimo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        //    ok = false;
-        //}
-
         if(ok){
-           
+          
             try{
                 
                 Emprestimo emp = cliente.realizarEmprestimo(item, ld);

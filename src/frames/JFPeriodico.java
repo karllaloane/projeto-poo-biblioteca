@@ -70,7 +70,7 @@ public class JFPeriodico extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTFNumero = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTFDataPub = new javax.swing.JFormattedTextField();
+        jTFDataPub = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jBNovo = new javax.swing.JButton();
         jBAlterar = new javax.swing.JButton();
@@ -167,12 +167,12 @@ public class JFPeriodico extends javax.swing.JFrame {
 
         jLabel12.setText("Data Publicação:");
 
-        jTFDataPub.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jTFDataPub.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFDataPubActionPerformed(evt);
-            }
-        });
+        try{
+            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
+            jTFDataPub = new javax.swing.JFormattedTextField(data);
+        }
+        catch (Exception e){
+        }
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -188,7 +188,7 @@ public class JFPeriodico extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(jTFDataPub, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFDataPub, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(36, 36, 36)
@@ -220,7 +220,7 @@ public class JFPeriodico extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jTFDataPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -585,10 +585,6 @@ public class JFPeriodico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTFVolumeKeyTyped
 
-    private void jTFDataPubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDataPubActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDataPubActionPerformed
-
     private void desabilitaCampos(){
         jTFNumero.setEditable(false);
         jTFEditora.setEditable(false);
@@ -679,7 +675,7 @@ public class JFPeriodico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JFormattedTextField jTFDataPub;
+    private javax.swing.JTextField jTFDataPub;
     private javax.swing.JTextField jTFEditora;
     private javax.swing.JTextField jTFNome;
     private javax.swing.JTextField jTFNumero;
