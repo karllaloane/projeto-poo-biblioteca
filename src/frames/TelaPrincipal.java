@@ -53,8 +53,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItemCancelarReserva = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemHistEmp = new javax.swing.JMenuItem();
-        jMenuItemEmpAtivo = new javax.swing.JMenuItem();
-        jMenuItemEmpAtras = new javax.swing.JMenuItem();
         jMenuItemTotalMulta = new javax.swing.JMenuItem();
         jMenuAjuda = new javax.swing.JMenu();
         jMenuItemInfo = new javax.swing.JMenuItem();
@@ -73,22 +71,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/booksat.jpg"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(978, 645));
+        jLabel1.setMinimumSize(new java.awt.Dimension(978, 645));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 628, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jMenuCliente.setText("Cliente");
@@ -165,13 +165,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Relatórios");
 
         jMenuItemHistEmp.setText("Histórico de Empréstimos");
+        jMenuItemHistEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemHistEmpActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemHistEmp);
-
-        jMenuItemEmpAtivo.setText("Empréstimos Ativos");
-        jMenu1.add(jMenuItemEmpAtivo);
-
-        jMenuItemEmpAtras.setText("Empréstimos Atrasados");
-        jMenu1.add(jMenuItemEmpAtras);
 
         jMenuItemTotalMulta.setText("Total de Multas Pendentes");
         jMenuItemTotalMulta.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +223,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClienteActionPerformed
         
        JFCliente jfc = new JFCliente(this, biblioteca);
-       jfc.setLocationRelativeTo(rootPane);
+       jfc.setLocationRelativeTo(jPanel1);
        jfc.setVisible(true);
        
        // Desativa funcionalidades da tabela principal
@@ -235,7 +234,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
        JFLivro jfl = new JFLivro(this, biblioteca);
-       jfl.setLocationRelativeTo(rootPane);
+       jfl.setLocationRelativeTo(jPanel1);
        jfl.setVisible(true);
        
        // Desativa funcionalidades da tabela principal
@@ -246,12 +245,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemBuscarEmpActionPerformed
 
-    private void jMenuItemTotalMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTotalMultaActionPerformed
-        // TODO add your handling code here:
-        double multa = this.biblioteca.totalMultasPendentes();
-        JOptionPane.showMessageDialog(null, "Total de multas pendentes: " + multa, "Multas", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jMenuItemTotalMultaActionPerformed
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
 
     }//GEN-LAST:event_formWindowClosed
@@ -259,7 +252,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItemPeriodicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPeriodicoActionPerformed
         // TODO add your handling code here:
        JFPeriodico jfp = new JFPeriodico(this, biblioteca);
-       jfp.setLocationRelativeTo(rootPane);
+       jfp.setLocationRelativeTo(jPanel1);
        jfp.setVisible(true);
        
        // Desativa funcionalidades da tabela principal
@@ -270,7 +263,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
        JFCriaEmprestimo jfe = new JFCriaEmprestimo(this, biblioteca);
-       jfe.setLocationRelativeTo(rootPane);
+       jfe.setLocationRelativeTo(jPanel1);
        jfe.setVisible(true);
        
        // Desativa funcionalidades da tabela principal
@@ -281,7 +274,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
        JFListaClientes jfc = new JFListaClientes(this, biblioteca);
-       jfc.setLocationRelativeTo(rootPane);
+       jfc.setLocationRelativeTo(jPanel1);
        jfc.setVisible(true);
        
        // Desativa funcionalidades da tabela principal
@@ -291,12 +284,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItemListaLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListaLivrosActionPerformed
         // TODO add your handling code here:
        JFListaTitulos jft = new JFListaTitulos(this, biblioteca);
-       jft.setLocationRelativeTo(rootPane);
+       jft.setLocationRelativeTo(jPanel1);
        jft.setVisible(true);
        
        // Desativa funcionalidades da tabela principal
        this.setEnabled(false);
     }//GEN-LAST:event_jMenuItemListaLivrosActionPerformed
+
+    private void jMenuItemTotalMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTotalMultaActionPerformed
+        // TODO add your handling code here:
+        double multa = this.biblioteca.totalMultasPendentes();
+        JOptionPane.showMessageDialog(null, "Total de multas pendentes: " + multa, "Multas", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItemTotalMultaActionPerformed
+
+    private void jMenuItemHistEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHistEmpActionPerformed
+        // TODO add your handling code here:
+        
+       JFHistoricoEmprestimo jfh = new JFHistoricoEmprestimo(this, biblioteca);
+       jfh.setLocationRelativeTo(jPanel1);
+       jfh.setVisible(true);
+       
+       // Desativa funcionalidades da tabela principal
+       this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItemHistEmpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,8 +355,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemCancelarReserva;
     private javax.swing.JMenuItem jMenuItemCliente;
     private javax.swing.JMenuItem jMenuItemCriarEmp;
-    private javax.swing.JMenuItem jMenuItemEmpAtivo;
-    private javax.swing.JMenuItem jMenuItemEmpAtras;
     private javax.swing.JMenuItem jMenuItemHistEmp;
     private javax.swing.JMenuItem jMenuItemInfo;
     private javax.swing.JMenuItem jMenuItemListaLivros;

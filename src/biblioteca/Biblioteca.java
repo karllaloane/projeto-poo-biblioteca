@@ -167,29 +167,22 @@ public final class Biblioteca {
 	/**************************************************************************************************/
 	//Relatorios
 	
-        /** Método que imprime todos os empréstimos ativos
+        /** Método que retorna todos os empréstimos em aberto
          * 
+         * @return emprestimos - ArrayList de emprestimos em aberto
          */
-	public void exibirEmprestimosAtivos() {
-		//JOption
-		System.out.println("Emprestimos ativos:");
+	public ArrayList<Emprestimo> exibirEmprestimosEmAberto() {
+                
+                ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+            
 		for (Emprestimo e: historicoEmprestimos) {
 			if(e.getDataDevolucao() == null)
-				System.out.println(e);
+				emprestimos.add(e);
 		}
-		System.out.println("Fim do relatorio.");
+                
+                return emprestimos;
 	}
 	
-        /** Método que imprime todos os empréstimos atrasados
-         * 
-         */
-	public void exibirEmprestimosAtrasados() {
-		//JOption
-		for(Emprestimo e: historicoEmprestimos) {
-			if(e.getDataDevolucaoPrevista().compareTo(LocalDate.now()) < 0)
-				System.out.println(e);
-		}
-	}
 
         /** Método que calcula o valor total das multas pendentes de pagamento
          * 

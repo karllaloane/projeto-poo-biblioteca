@@ -8,10 +8,13 @@ public class Emprestimo implements Publicavel, Serializable{
 	
     private static int maxRenovacao = 3;
     private int quantRenovado = 0;
+    private static int totalEmp = 0;
 
+    private int ID;
     private double valorMulta;
     private boolean multaPaga;
     private boolean estaMultado;
+    
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucaoPrevista; //manter ou deixar apenas dataDevolucao
     private LocalDate dataDevolucao;
@@ -20,6 +23,8 @@ public class Emprestimo implements Publicavel, Serializable{
     private ItemAcervo item;
 
     public Emprestimo(Cliente cliente, ItemAcervo item, LocalDate dataEmprestimo) {
+            totalEmp++;
+            this.ID = totalEmp;
             this.quantRenovado = 0;
             this.cliente = cliente;
             this.item = item;
@@ -134,6 +139,10 @@ public class Emprestimo implements Publicavel, Serializable{
 
     public LocalDate getDataDevolucao() {
             return dataDevolucao;
+    }
+    
+    public int getID(){
+            return this.ID;
     }
 
     @Override

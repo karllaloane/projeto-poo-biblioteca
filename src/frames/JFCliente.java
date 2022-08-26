@@ -455,12 +455,12 @@ public class JFCliente extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         telaPrincipal.setEnabled(true);
-        //telaPrincipal.setVisible(true);
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void jTFCpfPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCpfPesquisaActionPerformed
         // TODO add your handling code here:
-        System.out.println("CLicou!!!");
+        //System.out.println("CLicou!!!");
     }//GEN-LAST:event_jTFCpfPesquisaActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
