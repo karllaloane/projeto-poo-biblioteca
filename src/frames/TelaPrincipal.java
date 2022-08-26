@@ -46,6 +46,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuLivros = new javax.swing.JMenu();
         jMenuItemLivro = new javax.swing.JMenuItem();
         jMenuItemPeriodico = new javax.swing.JMenuItem();
+        jMenuItemListaLivros = new javax.swing.JMenuItem();
         jMenuEmprestimo = new javax.swing.JMenu();
         jMenuItemCriarEmp = new javax.swing.JMenuItem();
         jMenuItemBuscarEmp = new javax.swing.JMenuItem();
@@ -101,6 +102,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCliente.add(jMenuItemCliente);
 
         jMenuItem1.setText("Listar todos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenuCliente.add(jMenuItem1);
 
         jMenuBar1.add(jMenuCliente);
@@ -122,6 +128,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuLivros.add(jMenuItemPeriodico);
+
+        jMenuItemListaLivros.setText("Listar todos os itens");
+        jMenuItemListaLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListaLivrosActionPerformed(evt);
+            }
+        });
+        jMenuLivros.add(jMenuItemListaLivros);
 
         jMenuBar1.add(jMenuLivros);
 
@@ -263,6 +277,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
        this.setEnabled(false);
     }//GEN-LAST:event_jMenuItemCriarEmpActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+       JFListaClientes jfc = new JFListaClientes(this, biblioteca);
+       jfc.setLocationRelativeTo(rootPane);
+       jfc.setVisible(true);
+       
+       // Desativa funcionalidades da tabela principal
+       this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItemListaLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListaLivrosActionPerformed
+        // TODO add your handling code here:
+       JFListaTitulos jft = new JFListaTitulos(this, biblioteca);
+       jft.setLocationRelativeTo(rootPane);
+       jft.setVisible(true);
+       
+       // Desativa funcionalidades da tabela principal
+       this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItemListaLivrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -314,6 +349,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemEmpAtras;
     private javax.swing.JMenuItem jMenuItemHistEmp;
     private javax.swing.JMenuItem jMenuItemInfo;
+    private javax.swing.JMenuItem jMenuItemListaLivros;
     private javax.swing.JMenuItem jMenuItemLivro;
     private javax.swing.JMenuItem jMenuItemPeriodico;
     private javax.swing.JMenuItem jMenuItemSobre;
