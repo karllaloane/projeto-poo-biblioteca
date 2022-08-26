@@ -34,6 +34,16 @@ public class Cliente extends Pessoa {
                     item.setReserva(null);
                 }
             }
+            
+            if(this.isPenalizado()) {
+                throw new ClienteComPendenciaException("O cliente possui multa(s) pendente(s)!\nImpossível"
+                        + " realizar o empréstimo");
+            }
+            
+            if(this.quantidadeEmprestimosAtuais() == maximoEmprestimo) {
+                throw new ClienteComPendenciaException("O cliente já possui dois empréstimos ativos!\nImpossível"
+                        + " realizar o empréstimo");
+            }
 
             Emprestimo e = new Emprestimo(this, item, data);
 

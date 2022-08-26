@@ -595,15 +595,15 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
         //pode validar a data aqui
         
         //exceção
-        if(cliente.isPenalizado()){
-            JOptionPane.showMessageDialog(null, "O cliente possui multas pendentes!\nImpossível "
-                    + "realizar o empréstimo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            ok = false;
-        } else if(cliente.quantidadeEmprestimosAtuais() == cliente.getMaximoEmprestimo()){
-            JOptionPane.showMessageDialog(null, "O cliente já possui dois empréstiomos ativos!\nImpossível "
-                    + "realizar o empréstimo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            ok = false;
-        }
+        //if(cliente.isPenalizado()){
+        //    JOptionPane.showMessageDialog(null, "O cliente possui multas pendentes!\nImpossível "
+        //            + "realizar o empréstimo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        //    ok = false;
+        //} else if(cliente.quantidadeEmprestimosAtuais() == cliente.getMaximoEmprestimo()){
+        //    JOptionPane.showMessageDialog(null, "O cliente já possui dois empréstiomos ativos!\nImpossível "
+        //            + "realizar o empréstimo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        //    ok = false;
+        //}
 
         if(ok){
            
@@ -612,11 +612,14 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
                 Emprestimo emp = cliente.realizarEmprestimo(item, ld);
                 biblioteca.addHistoricoEmprestimos(emp);
                 
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                
                 String mensagem = "Empréstimo realizado! \n"
                         + "Cliente: " + cliente.getNome() + "\n" 
                         + "Livro/Periódico: " + item.getTitulo() + "\n"
-                        + "Data do empréstimo: " + ld.format(DateTimeFormatter.ISO_DATE) + "\n\n"
-                        + "Data para devolução do empréstimo: " + emp.getDataDevolucaoPrevista().format(DateTimeFormatter.ISO_DATE);
+                        + "Data do empréstimo: " + ld.format(formatter) + "\n\n"
+                        + "Data para devolução do empréstimo: " + emp.getDataDevolucaoPrevista().format(formatter);
                 
                 
                 JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -625,7 +628,7 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
                 jBEmprestar.setEnabled(false);
                 limparCampos();
                 
-            } catch (ItemIndisponivelException e){
+            } catch (ItemIndisponivelException | ClienteComPendenciaException e){
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
             }
         }
