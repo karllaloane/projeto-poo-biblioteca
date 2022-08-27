@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public abstract class ItemAcervo implements Serializable{
 	
-    private static int totalItens = 0;
+    private static int totalItens;
     private int id;
     private String titulo;
     private String editora;

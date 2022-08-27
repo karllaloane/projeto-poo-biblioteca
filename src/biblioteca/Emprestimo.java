@@ -17,7 +17,7 @@ public class Emprestimo implements Publicavel, Serializable{
 	
     private static int maxRenovacao = 3;
     private int quantRenovado = 0;
-    private static int totalEmp = 0;
+    private static int totalEmp;
 
     private int ID;
     private double valorMulta;

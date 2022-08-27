@@ -73,7 +73,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBuscarEmp">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar Emprestimo"/>
+                <Property name="text" type="java.lang.String" value="Devolver / Renovar Emprestimo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemBuscarEmpActionPerformed"/>

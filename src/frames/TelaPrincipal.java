@@ -149,7 +149,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuEmprestimo.add(jMenuItemCriarEmp);
 
-        jMenuItemBuscarEmp.setText("Buscar Emprestimo");
+        jMenuItemBuscarEmp.setText("Devolver / Renovar Emprestimo");
         jMenuItemBuscarEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemBuscarEmpActionPerformed(evt);
@@ -243,6 +243,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemBuscarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBuscarEmpActionPerformed
         // TODO add your handling code here:
+        
+        JFDevolverEmprestimo jfl = new JFDevolverEmprestimo(this, biblioteca);
+       jfl.setLocationRelativeTo(jPanel1);
+       jfl.setVisible(true);
+       
+       // Desativa funcionalidades da tabela principal
+       this.setEnabled(false);
     }//GEN-LAST:event_jMenuItemBuscarEmpActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -251,9 +258,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemPeriodicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPeriodicoActionPerformed
         // TODO add your handling code here:
-       JFPeriodico jfp = new JFPeriodico(this, biblioteca);
-       jfp.setLocationRelativeTo(jPanel1);
-       jfp.setVisible(true);
+        JFPeriodico jfp = new JFPeriodico(this, biblioteca);
+        jfp.setLocationRelativeTo(jPanel1);
+        jfp.setVisible(true);
        
        // Desativa funcionalidades da tabela principal
        this.setEnabled(false);

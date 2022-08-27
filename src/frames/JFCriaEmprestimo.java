@@ -667,20 +667,25 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
         
             ld = LocalDate.of(ano, mes, dia);
         }
-        
         if(ok){
-            if(item.registrarReserva(cliente, ld)){
-                String mensagem = "A reserva do livro/periódico \n"
-                        + item.getTitulo() + " foi realizada com sucesso\n"
-                        + "para " + cliente.getNome() + "\n";
-                JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                
-                limparTabela();
-                jBReservar.setEnabled(false);
-                limparCampos();
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "O livro já está reservado!", "Falha", JOptionPane.INFORMATION_MESSAGE);
+            try{
+
+                    if(item.registrarReserva(cliente, ld)){
+                        String mensagem = "A reserva do livro/periódico \n"
+                                + item.getTitulo() + " foi realizada com sucesso\n"
+                                + "para " + cliente.getNome() + "\n";
+                        JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                        limparTabela();
+                        jBReservar.setEnabled(false);
+                        limparCampos();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "O livro já está reservado!", "Falha", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+            } catch(ClienteComPendenciaException e){
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_jBReservarActionPerformed
