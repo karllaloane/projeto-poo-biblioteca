@@ -498,13 +498,17 @@ public class JFPeriodico extends javax.swing.JFrame {
         //se for sim
         if(resp == JOptionPane.YES_NO_OPTION){
 
-            biblioteca.getItens().remove(periodico);
-
-            limpaCampos();
-            desabilitaCampos();
-            jBExcluir.setEnabled(false);
-            jBAlterar.setEnabled(false);
-            limparSituacao();
+            try {
+                biblioteca.removeItem(periodico);
+                limpaCampos();
+                desabilitaCampos();
+                jBExcluir.setEnabled(false);
+                jBAlterar.setEnabled(false);
+                limparSituacao();
+            } catch(ItemIndisponivelException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                jBExcluir.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
 

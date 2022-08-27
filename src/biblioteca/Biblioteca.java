@@ -62,6 +62,26 @@ public final class Biblioteca {
 	public void addClientes(Cliente cliente) {
 		this.clientes.add(cliente);
 	}
+        
+        /** Método que remove um cliente da lista de clientes
+         * 
+         * @param cliente - objeto da classe Cliente a ser removido
+         */
+        public void removeCliente(Cliente cliente) {
+            if(cliente.isPenalizado() == true)
+                throw new ClienteComPendenciaException("O cliente não pode ser excluído, pois possui multa pendente");
+            this.clientes.remove(cliente);
+        }
+        
+        /** Método que remove item da lista de itens
+         * 
+         * @param item - ItemAcervo que será removido
+         */
+        public void removeItem(ItemAcervo item) {
+            if(item.isDisponivel() == false)
+                throw new ItemIndisponivelException("O item não pode ser excluído, pois está indisponível");
+            this.itens.remove(item);
+        }
 	
         /** Método que adiciona um empréstimo à lista de empréstimos
          * 

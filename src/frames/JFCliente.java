@@ -427,12 +427,17 @@ public class JFCliente extends javax.swing.JFrame {
         //se for sim
         if(resp == JOptionPane.YES_NO_OPTION){
             
-            biblioteca.getClientes().remove(cliente);
-            
-            limpaCampos();
-            desabilitaCampos();
-            jBExcluir.setEnabled(false);
-            jBAlterar.setEnabled(false);
+            try {
+                biblioteca.removeCliente(cliente);
+                
+                limpaCampos();
+                desabilitaCampos();
+                jBExcluir.setEnabled(false);
+                jBAlterar.setEnabled(false);
+            } catch(ClienteComPendenciaException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                jBExcluir.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
 

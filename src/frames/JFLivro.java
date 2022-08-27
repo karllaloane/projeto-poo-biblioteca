@@ -507,13 +507,18 @@ public class JFLivro extends javax.swing.JFrame {
         //se for sim
         if(resp == JOptionPane.YES_NO_OPTION){
             
-            biblioteca.getItens().remove(livro);
-            
-            limpaCampos();
-            desabilitaCampos();
-            limparSituacao();
-            jBExcluir.setEnabled(false);
-            jBAlterar.setEnabled(false);
+            try {
+                biblioteca.removeItem(livro);
+                
+                limpaCampos();
+                desabilitaCampos();
+                limparSituacao();
+                jBExcluir.setEnabled(false);
+                jBAlterar.setEnabled(false);
+            } catch(ItemIndisponivelException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                jBExcluir.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
 

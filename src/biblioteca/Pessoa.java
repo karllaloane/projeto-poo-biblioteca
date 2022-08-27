@@ -3,7 +3,9 @@ package biblioteca;
 import java.io.Serializable;
 
 public class Pessoa implements Serializable{
+    private static int numPessoa;
     
+    private int ID;
     private String nome;
     private String cpf;
     private String telefone;
@@ -15,7 +17,8 @@ public class Pessoa implements Serializable{
     }
 
     public Pessoa(String nome, String cpf, String telefone, String email, Endereco endereco) {
-            super();
+            numPessoa++;
+            this.ID = numPessoa;
             this.nome = nome;
             this.cpf = cpf;
             this.telefone = telefone;
@@ -66,6 +69,7 @@ public class Pessoa implements Serializable{
     @Override
     public String toString() {
             return "Pessoa: \n" +
+                            "ID: '" + ID + '\'' +
                             "Nome: '" + nome + '\'' +
                             ", CPF: '" + cpf + '\'' +
                             ", Telefone: '" + telefone + '\'' +
