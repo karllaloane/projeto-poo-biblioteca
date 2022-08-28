@@ -457,19 +457,21 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
             int indice;
             
             //procurando o emprestimo
-            for(indice = 0; indice < cliente.getEmprestimosAtuais().size(); indice++){
-                if(titulo.equals(cliente.getEmprestimosAtuais().get(indice).getItem().getTitulo()))
+            int aux = cliente.getEmprestimos().size();
+            for(indice = --aux; indice >= 0; indice--){
+                if(titulo.equals(cliente.getEmprestimos().get(indice).getItem().getTitulo()))
                     break;
             }
+            
             cliente.devolverItem(indice, ld);
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
             String mensagem = "Devolução realizada com sucesso!";
 
-            if(cliente.isPenalizado()){
+            if(cliente.isPenalizado() && cliente.getEmprestimos().get(indice).getEstaMultado()){
                 mensagem = "\n\nDEVOLUÇÃO REALIZADA COM ATRASO!!!\n"
-                        + "Valor da multa: " + cliente.getEmprestimosAtuais().get(indice).getValorMulta();
+                        + "Valor da multa: " + cliente.getEmprestimos().get(indice).getValorMulta();
             }
 
            JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -525,24 +527,24 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
             
             titulo = jTFLivro.getText();
                         
-            //procurando o emprestimo
-            for(indice = 0; indice < cliente.getEmprestimosAtuais().size(); indice++){
-                if(titulo.equals(cliente.getEmprestimosAtuais().get(indice).getItem().getTitulo())){
+            int aux = cliente.getEmprestimos().size();
+            for(indice = --aux; indice >= 0; indice--){
+                if(titulo.equals(cliente.getEmprestimos().get(indice).getItem().getTitulo())){
                     break;
                 }      
             }
             
-            if(ld.isAfter(cliente.getEmprestimosAtuais().get(indice).getDataDevolucaoPrevista())){
+            if(ld.isAfter(cliente.getEmprestimos().get(indice).getDataDevolucaoPrevista())){
                 JOptionPane.showMessageDialog(null, "Falha na renovação!\n\n"
                         + "Impossível renovar em data posterior"
                         + " a data de devolução prevista!\n"
                         + "Proceda à devolução do item!", "Falha", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                if(cliente.getEmprestimosAtuais().get(indice).renovar()){
+                if(cliente.getEmprestimos().get(indice).renovar()){
                     String mensagem = "Empréstimo renovado com sucesso!\n\n"
                             + "Data da renovação: " + ld.format(formatter) + "\n"
                             + "Data prevista para devolução: " + 
-                            cliente.getEmprestimosAtuais().get(indice).getDataDevolucaoPrevista().format(formatter) + "\n";
+                            cliente.getEmprestimos().get(indice).getDataDevolucaoPrevista().format(formatter) + "\n";
                     
                     JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
@@ -551,10 +553,11 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
                             + "Número máximo de renovações excedida!\n"
                             + "Proceda à devolução do item!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 }
+                
+                limparTabela();
+                limparCampos();
             }
-            
-            limparTabela();
-            limparCampos();
+  
         }
     }//GEN-LAST:event_jBRenovarActionPerformed
 
@@ -566,7 +569,7 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
     private void exibirEmprestimos(){
         limparTabela();
-        ArrayList<Emprestimo> emp = cliente.getEmprestimosAtuais();
+        ArrayList<Emprestimo> emp = cliente.getEmprestimos();
         
         limparTabela();
 
@@ -579,9 +582,9 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         
         for (int i = 0; i < emp.size(); i++) {
             
-            //para exibir só os emprestimos em aberto
-            //pois se estiver multado não devolve
-            if(!emp.get(i).getEstaMultado()){
+            //se a data de devolução for null
+            //o empréstimo ainda nao foi devolvido
+            if(emp.get(i).getDataDevolucao() == null){
                 
                 tmLivro.addRow(linha);
                 tmLivro.setValueAt(emp.get(i).getID(), l, 0);

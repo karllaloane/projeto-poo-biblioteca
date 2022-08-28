@@ -55,6 +55,8 @@ public class Emprestimo implements Publicavel, Serializable{
             if(valorMulta > 0) {
                     setMultaPaga(false);
                     setEstaMultado(true);
+            } else {
+                this.valorMulta = 0;
             }
 
             return this.valorMulta;
@@ -232,7 +234,11 @@ public class Emprestimo implements Publicavel, Serializable{
     public int getID(){
             return this.ID;
     }
-
+    
+    public static void setTotalEmp(int totalEmp){
+        totalEmp = totalEmp;
+    }
+    
     /** Método toString que retorna os dados do Emprestimo
      * 
      * @return String

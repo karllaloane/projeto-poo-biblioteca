@@ -19,37 +19,19 @@ import java.util.ArrayList;
  */
 public class BibliotecaArquivo {
     private File clienteFile;
-    private File emprestimoFile;
     private File itemFile;
 
     
     public BibliotecaArquivo() throws IOException{
         clienteFile = new File("cliente.txt");
-        emprestimoFile = new File("emprestimo.txt");
         itemFile = new File("acervo.txt");
         
         if(!clienteFile.exists()){
             this.clienteFile.createNewFile();
         }
-        if(!emprestimoFile.exists()){
-            this.emprestimoFile.createNewFile();
-        }
         if(!itemFile.exists()){
             this.itemFile.createNewFile();
         }
-    }
-    
-    public ArrayList<Emprestimo> getListaEmprestimo() throws FileNotFoundException, IOException, ClassNotFoundException{
-        ArrayList<Emprestimo> emprestimos = new ArrayList<>();;
-        ObjectInputStream objIS = null;
-        
-        if (emprestimoFile.length() > 0) {
-            objIS = new ObjectInputStream(new FileInputStream(emprestimoFile));
-            emprestimos = (ArrayList<Emprestimo>) objIS.readObject();
-            //System.out.println("Emprestimos nao esta vazio! size > " + emprestimos.size());
-        }
-        
-        return emprestimos;        
     }
     
     public ArrayList<Cliente> getListaCliente() throws FileNotFoundException, IOException, ClassNotFoundException{
@@ -78,16 +60,6 @@ public class BibliotecaArquivo {
         }
         
         return acervo;        
-    }
-    
-    public void gravarEmprestimo(ArrayList<Emprestimo> emprestimo) throws IOException{
-        FileOutputStream caminho = new FileOutputStream("emprestimo.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(caminho);
-	oos.writeObject(emprestimo);
-	oos.close();
-        oos.flush();
-        caminho.flush();
-	caminho.close();
     }
     
     public void gravarCliente(ArrayList<Cliente> cliente) throws IOException{

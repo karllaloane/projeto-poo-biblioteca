@@ -14,7 +14,7 @@ public final class Biblioteca {
 	
 	private String nome;
 	private String cnpj;
-	private ArrayList<Emprestimo> historicoEmprestimos;
+	
 	private ArrayList<ItemAcervo> itens;	
 	private ArrayList<Cliente> clientes;
 	
@@ -23,9 +23,9 @@ public final class Biblioteca {
 	private Biblioteca() {
 		this.setNome("Biblioteca");
 		this.setCnpj("123456/0000");
-		setHistoricoEmprestimos(new ArrayList<Emprestimo>());
+		//setHistoricoEmprestimos(new ArrayList<Emprestimo>());
 		setItens(new ArrayList<ItemAcervo>());
-		setClientes(new ArrayList<Cliente>());	
+		setClientes(new ArrayList<Cliente>());	  
 	}
 	
 	public static Biblioteca biblioteca;
@@ -82,15 +82,7 @@ public final class Biblioteca {
                 throw new ItemIndisponivelException("O item não pode ser excluído, pois está indisponível");
             this.itens.remove(item);
         }
-	
-        /** Método que adiciona um empréstimo à lista de empréstimos
-         * 
-         * @param emprestimo - objeto da classe Emprestimo
-         */
-	public void addHistoricoEmprestimos(Emprestimo emprestimo) {
-		this.historicoEmprestimos.add(emprestimo);
-	}
-	
+		
 	//------------------------------------------------------------------//
         
         
@@ -184,21 +176,40 @@ public final class Biblioteca {
             return periodicos; 
         }
         
-	/**************************************************************************************************/
+	//-------------------------------------------------------------------------------//
 	//Relatorios
 	
         /** Método que retorna todos os empréstimos em aberto
          * 
          * @return emprestimos - ArrayList de emprestimos em aberto
          */
-	public ArrayList<Emprestimo> exibirEmprestimosEmAberto() {
+	public ArrayList<Emprestimo> buscaEmprestimosEmAberto() {
                 
                 ArrayList<Emprestimo> emprestimos = new ArrayList<>();
-            
-		for (Emprestimo e: historicoEmprestimos) {
+                
+                for(Cliente c : clientes){
+                    for (Emprestimo e: c.getEmprestimos()) {
 			if(e.getDataDevolucao() == null)
 				emprestimos.add(e);
-		}
+                    }
+                }
+                
+                return emprestimos;
+	}
+        
+        /** Método que retorna todos os empréstimos existentes
+         * 
+         * @return emprestimos - ArrayList de emprestimos
+         */
+	public ArrayList<Emprestimo> buscTodosEmprestimos() {
+                
+                ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+                
+                for(Cliente c : clientes){
+                    for (Emprestimo e: c.getEmprestimos()) {
+				emprestimos.add(e);
+                    }
+                }
                 
                 return emprestimos;
 	}
@@ -212,11 +223,13 @@ public final class Biblioteca {
 
 		double total = 0;
 
-		for(Emprestimo e : historicoEmprestimos) {
+		for(Cliente c : clientes){
+                    for (Emprestimo e: c.getEmprestimos()) {
 			if(e.getEstaMultado() && !e.isMultaPaga()) {
 				total += e.getValorMulta();
 			}
-		}
+                    }
+                }
 
 		return total;
 	}
@@ -253,22 +266,6 @@ public final class Biblioteca {
          */
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}
-
-        /** Método que retorna a lista de histórico de Empréstimo
-         * 
-         * @return historicoEmprestimos - ArrayList de empréstimos
-         */
-	public ArrayList<Emprestimo> getHistoricoEmprestimos() {
-		return historicoEmprestimos;
-	}
-
-        /** Método que atribui uma ArrayList de Empréstimo ao atributo da classe
-         * 
-         * @param historicoEmprestimos - ArrayList que deseja atribuir
-         */
-	public void setHistoricoEmprestimos(ArrayList<Emprestimo> historicoEmprestimos) {
-		this.historicoEmprestimos = historicoEmprestimos;
 	}
 
         /** Método que retorna ArrayList com os itens do acervo
@@ -312,7 +309,6 @@ public final class Biblioteca {
 		return "Biblioteca: " +
 				"Nome: '" + nome + '\'' +
 				", CNPJ: '" + cnpj + '\'' +
-				", Emprestimos: " + historicoEmprestimos +
 				"Itens :" + itens +
 				", Clientes: " + clientes;
 	}

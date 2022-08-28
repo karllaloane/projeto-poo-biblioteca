@@ -63,7 +63,7 @@ public class JFListaClientes extends javax.swing.JFrame {
             tmLista.setValueAt(cliente.get(i).getNome(), i, 0);
             tmLista.setValueAt(cliente.get(i).getCpf(), i, 1);
             tmLista.setValueAt(cliente.get(i).getTelefone(), i, 2);
-            tmLista.setValueAt(cliente.get(i).quantidadeEmprestimosAtuais(), i, 3);
+            tmLista.setValueAt(cliente.get(i).getQuantEmprestimosAtivos(), i, 3);
         }
     }
 

@@ -515,6 +515,8 @@ public class JFLivro extends javax.swing.JFrame {
                 limparSituacao();
                 jBExcluir.setEnabled(false);
                 jBAlterar.setEnabled(false);
+                limparTabela();
+                JOptionPane.showMessageDialog(null, "Livro excluído com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             } catch(ItemIndisponivelException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 jBExcluir.setEnabled(false);
@@ -560,10 +562,11 @@ public class JFLivro extends javax.swing.JFrame {
         }
         
         jBNovo.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBAlterar.setEnabled(true);
+        jBExcluir.setEnabled(false);
+        jBAlterar.setEnabled(false);
         jBSalvar.setEnabled(false);
         desabilitaCampos();
+        limpaCampos();
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed

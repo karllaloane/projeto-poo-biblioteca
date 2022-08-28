@@ -13,7 +13,8 @@ public class Cliente extends Pessoa {
 
     private static int maximoEmprestimo = 2; //Pensar em uma melhor forma de armazenar
     private boolean penalizado;
-    private ArrayList<Emprestimo> emprestimosAtuais;
+    private ArrayList<Emprestimo> emprestimos;
+    private int quantEmprestimosAtivos;
 
     public Cliente() {
             super();
@@ -21,8 +22,9 @@ public class Cliente extends Pessoa {
 
     public Cliente(String nome, String cpf, String telefone, String email, Endereco endereco) {
             super(nome, cpf, telefone, email, endereco);
-            emprestimosAtuais = new ArrayList<Emprestimo>();
+            emprestimos = new ArrayList<Emprestimo>();
             setPenalizado(false);
+            quantEmprestimosAtivos = 0;
     }
 
     /** Método que recebe um ItemAcervo e um LocalDate, verifica se o item está
@@ -33,16 +35,15 @@ public class Cliente extends Pessoa {
      * @param item - ItemAcervo - item objeto do empréstimo
      * @param data - LocalDate - data em que o empréstimo está sendo realizado
      *
-     * @return objeto da classe Emprestimo
      */
-    public Emprestimo realizarEmprestimo(ItemAcervo item, LocalDate data) {
+    public void realizarEmprestimo(ItemAcervo item, LocalDate data) {
 
             if(!item.isDisponivel()) {
                     throw new ItemIndisponivelException("O livro nao esta disponivel!");
             }
 
             if(item.isReservado()) {
-                if(!item.getReserva().getCliente().equals(this)) {
+                if(!item.getReserva().getCliente().getCpf().equals(this.getCpf())) {
                         throw new ItemIndisponivelException("O livro ja esta reservado pra outra pessoa!");
                 } else {
                     item.setReservado(false);
@@ -55,7 +56,7 @@ public class Cliente extends Pessoa {
                         + " realizar o empréstimo");
             }
             
-            if(this.quantidadeEmprestimosAtuais() == maximoEmprestimo) {
+            if(this.quantEmprestimosAtivos == maximoEmprestimo) {
                 throw new ClienteComPendenciaException("O cliente já possui dois empréstimos ativos!\nImpossível"
                         + " realizar o empréstimo");
             }
@@ -64,9 +65,8 @@ public class Cliente extends Pessoa {
 
             item.setDisponivel(false);
 
-            emprestimosAtuais.add(e);
-
-            return e;
+            emprestimos.add(e);
+            this.quantEmprestimosAtivos++;
     }
 
     /** Método criado para representar a devolução de item que está emprestado
@@ -78,18 +78,29 @@ public class Cliente extends Pessoa {
 
             double multa = 0;
 
-            Emprestimo e = this.emprestimosAtuais.get(i);
+            Emprestimo e = this.emprestimos.get(i);
 
             e.setDataDevolucao(data);
             multa = e.calcularMulta();
-
+            
             if(multa > 0) { //se a multa for maior que zero, usuario e penalizado
                     setPenalizado(true);
-            } else {
-                    this.emprestimosAtuais.remove(e); //remove o objeto se não houver multa
             }
+            
+            this.quantEmprestimosAtivos--;
 
-            e.getItem().setDisponivel(true); //livro foi devolvido mesmo com multa     
+            e.getItem().setDisponivel(true); //livro foi devolvido mesmo com multa   
+            
+            Biblioteca b = Biblioteca.getInstance();
+            
+            //bucando o item no acero para alterar sua situacao
+            //pois por conta do arquivo esta perdendo a referencia
+            for(ItemAcervo item : b.getItens()){
+                if(item.getTitulo().equals(e.getItem().getTitulo())){
+                    item.setDisponivel(true);
+                    break;
+                }
+            }  
     }
 
     /** Método criado para representar o pagamento de eventual multa devida pelo
@@ -100,25 +111,17 @@ public class Cliente extends Pessoa {
 
             double valorTotal = 0;
 
-            while(!emprestimosAtuais.isEmpty()){
-                for(int i = 0; i < emprestimosAtuais.size(); i++) {
 
-                    //vai pegar os emprestimos que esta multado, alterar estado da multa
-                    //e finalmente remover dos emprestimos atuais
-                    
-                    System.out.println("OK");
-                    valorTotal += emprestimosAtuais.get(i).getValorMulta();
+            for(int i = 0; i < emprestimos.size(); i++) {
 
-                    if(emprestimosAtuais.get(i).getEstaMultado()) {
-                            emprestimosAtuais.get(i).setMultaPaga(true);
-                            
-                            Emprestimo e = emprestimosAtuais.get(i);
-                            
-                            emprestimosAtuais.remove(e);
-                    }	
-                }   
-            }
-            
+                //vai pegar os emprestimos que esta multado, alterar estado da multa
+
+                valorTotal += emprestimos.get(i).getValorMulta();
+
+                if(emprestimos.get(i).getEstaMultado()) {
+                        emprestimos.get(i).setMultaPaga(true);
+                }	
+            }   
 
             this.setPenalizado(false);
     }
@@ -129,8 +132,8 @@ public class Cliente extends Pessoa {
      * 
      * @return int - quantidade de empréstimos atuais do cliente
      */
-    public int quantidadeEmprestimosAtuais() {
-            return this.emprestimosAtuais.size();
+    public int quantidadeEmprestimos() {
+            return this.emprestimos.size();
     }
 
     /** Método que retorna o número máximo de empréstimos simultâneos que o
@@ -140,6 +143,14 @@ public class Cliente extends Pessoa {
      */
     public static int getMaximoEmprestimo() {
             return maximoEmprestimo;
+    }
+    
+    /** Método que retorna o número de empréstimos ativos do cliente.
+     * 
+     * @return int - número de empréstimos ativos
+     */
+    public int getQuantEmprestimosAtivos() {
+            return quantEmprestimosAtivos;
     }
 
     /** Método que atribui o número máximo de empréstimos simultâneos que os clientes
@@ -171,8 +182,8 @@ public class Cliente extends Pessoa {
      * 
      * @return ArrayList de Emprestimo
      */
-    public ArrayList<Emprestimo> getEmprestimosAtuais() {
-        return this.emprestimosAtuais;
+    public ArrayList<Emprestimo> getEmprestimos() {
+        return this.emprestimos;
     }
     
     /** Método toString que retorna os dados do objeto
@@ -183,7 +194,7 @@ public class Cliente extends Pessoa {
     public String toString() {
             return super.toString() +
                             ", Penalizado: " + penalizado +
-                            ", Emprestimos atuais: " + emprestimosAtuais;
+                            ", Emprestimos: " + emprestimos;
     }
         
 }

@@ -324,7 +324,7 @@ private TelaPrincipal telaPrincipal;
         double totalMulta = 0;
         
         limparTabela();
-        ArrayList<Emprestimo> emp = cliente.getEmprestimosAtuais();
+        ArrayList<Emprestimo> emp = cliente.getEmprestimos();
         
         limparTabela();
 
@@ -332,20 +332,24 @@ private TelaPrincipal telaPrincipal;
     
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
+        int l = 0;
+        
         for (int i = 0; i < emp.size(); i++) {
             
-            //para exibir só os emprestimos com multa
+            //para exibir só os emprestimos com multa ativa
             
-            if(emp.get(i).getEstaMultado()){
+            if(emp.get(i).getEstaMultado() && !emp.get(i).isMultaPaga()){
                 
                 tmLivro.addRow(linha);
-                tmLivro.setValueAt(emp.get(i).getID(), i, 0);
-                tmLivro.setValueAt(emp.get(i).getItem().getTitulo(), i, 1);
-                tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), i, 2);
-                tmLivro.setValueAt(emp.get(i).getDataDevolucao().format(formatter), i, 3);
-                tmLivro.setValueAt(emp.get(i).getValorMulta(), i, 4);
+                tmLivro.setValueAt(emp.get(i).getID(), l, 0);
+                tmLivro.setValueAt(emp.get(i).getItem().getTitulo(), l, 1);
+                tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 2);
+                tmLivro.setValueAt(emp.get(i).getDataDevolucao().format(formatter), l, 3);
+                tmLivro.setValueAt(emp.get(i).getValorMulta(), l, 4);
                 
                 totalMulta += emp.get(i).getValorMulta();
+                
+                l++;
             }           
         }
         

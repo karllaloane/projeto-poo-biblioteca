@@ -421,7 +421,8 @@ public class JFCliente extends javax.swing.JFrame {
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         // TODO add your handling code here:
         
-        int resp = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir este registro?",
+        int resp = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir este registro? \n\n"
+                + "O histórico de empréstimos do cliente também será excluído.",
                     "Confirmação!", JOptionPane.YES_NO_OPTION);
         
         //se for sim
@@ -434,6 +435,8 @@ public class JFCliente extends javax.swing.JFrame {
                 desabilitaCampos();
                 jBExcluir.setEnabled(false);
                 jBAlterar.setEnabled(false);
+                
+                JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             } catch(ClienteComPendenciaException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 jBExcluir.setEnabled(false);
@@ -523,10 +526,11 @@ public class JFCliente extends javax.swing.JFrame {
         }
         
         jBNovo.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBAlterar.setEnabled(true);
+        jBExcluir.setEnabled(false);
+        jBAlterar.setEnabled(false);
         jBSalvar.setEnabled(false);
         desabilitaCampos();
+        limpaCampos();
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jTFCpfPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCpfPesquisaKeyTyped

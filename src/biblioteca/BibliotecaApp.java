@@ -28,7 +28,6 @@ public class BibliotecaApp {
             try {
                 biblioteca.setClientes(bArquivo.getListaCliente());
                 biblioteca.setItens(bArquivo.getListaAcervo());
-                biblioteca.setHistoricoEmprestimos(bArquivo.getListaEmprestimo());
                 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(BibliotecaApp.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,7 +41,7 @@ public class BibliotecaApp {
             //Logger.getLogger(BibliotecaApp.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Falha na persistência de dados!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -50,6 +49,7 @@ public class BibliotecaApp {
                 TelaPrincipal tela = new TelaPrincipal(biblioteca);
                 tela.setLocationRelativeTo(null);
                 tela.setVisible(true);
+                
                 
                 tela.addWindowListener(new WindowAdapter() {
                     @Override
@@ -60,7 +60,6 @@ public class BibliotecaApp {
                             try {
                                 bArquivo.gravarCliente(biblioteca.getClientes());
                                 bArquivo.gravarAcervo(biblioteca.getItens());
-                                bArquivo.gravarEmprestimo(biblioteca.getHistoricoEmprestimos());
                                 
                             } catch (IOException ex) {
                                 Logger.getLogger(BibliotecaApp.class.getName()).log(Level.SEVERE, null, ex);

@@ -50,8 +50,8 @@ public abstract class ItemAcervo implements Serializable{
                     return false;
             }
             
-            for(Emprestimo e: c.getEmprestimosAtuais()) {
-                if(e.getItem().equals(this))
+            for(Emprestimo e: c.getEmprestimos()) {
+                if(e.getItem().getTitulo().equals(this.getTitulo()) && e.getDataDevolucao() == null)
                     throw new ClienteComPendenciaException("O cliente já está com este item");
             }
             

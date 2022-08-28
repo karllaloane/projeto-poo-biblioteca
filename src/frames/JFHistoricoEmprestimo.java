@@ -53,7 +53,7 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);
         jTable1.getColumnModel().getColumn(6).setPreferredWidth(70);
         
-        ArrayList<Emprestimo> emp = biblioteca.getHistoricoEmprestimos();
+        ArrayList<Emprestimo> emp = biblioteca.buscTodosEmprestimos();
         listarEmprestimos(emp);
     }
     
@@ -138,13 +138,13 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
         String selected = (String) combo.getSelectedItem();
         
          if (selected.equals("Todos")) {
-            ArrayList<Emprestimo> emp = biblioteca.getHistoricoEmprestimos(); 
+            ArrayList<Emprestimo> emp = biblioteca.buscTodosEmprestimos(); 
             listarEmprestimos(emp);
         } else if (selected.equals("Em aberto")) {
-            ArrayList<Emprestimo> emp = biblioteca.exibirEmprestimosEmAberto(); 
+            ArrayList<Emprestimo> emp = biblioteca.buscaEmprestimosEmAberto(); 
             listarEmprestimos(emp);
         } else if (selected.equals("Com multa")) {
-            ArrayList<Emprestimo> emp = biblioteca.getHistoricoEmprestimos(); 
+            ArrayList<Emprestimo> emp = biblioteca.buscTodosEmprestimos(); 
             listarEmprestimosComMulta(emp);
         }
     }//GEN-LAST:event_jComboBoxActionPerformed

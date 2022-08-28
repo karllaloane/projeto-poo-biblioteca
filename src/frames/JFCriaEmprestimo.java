@@ -602,16 +602,17 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
           
             try{
                 
-                Emprestimo emp = cliente.realizarEmprestimo(item, ld);
-                biblioteca.addHistoricoEmprestimos(emp);
+               cliente.realizarEmprestimo(item, ld);
                 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                
+                int indice = cliente.getEmprestimos().size();
                 
                 String mensagem = "Empréstimo realizado! \n"
                         + "Cliente: " + cliente.getNome() + "\n" 
                         + "Livro/Periódico: " + item.getTitulo() + "\n"
                         + "Data do empréstimo: " + ld.format(formatter) + "\n\n"
-                        + "Data para devolução do empréstimo: " + emp.getDataDevolucaoPrevista().format(formatter);
+                        + "Data para devolução do empréstimo: " + cliente.getEmprestimos().get(--indice).getDataDevolucaoPrevista().format(formatter);
                 
                 
                 JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
