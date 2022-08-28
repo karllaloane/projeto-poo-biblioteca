@@ -43,6 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCliente = new javax.swing.JMenu();
         jMenuItemCliente = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemPagarMulta = new javax.swing.JMenuItem();
         jMenuLivros = new javax.swing.JMenu();
         jMenuItemLivro = new javax.swing.JMenuItem();
         jMenuItemPeriodico = new javax.swing.JMenuItem();
@@ -108,6 +109,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuCliente.add(jMenuItem1);
+
+        jMenuItemPagarMulta.setText("Pagar multa");
+        jMenuItemPagarMulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPagarMultaActionPerformed(evt);
+            }
+        });
+        jMenuCliente.add(jMenuItemPagarMulta);
 
         jMenuBar1.add(jMenuCliente);
 
@@ -315,6 +324,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
        this.setEnabled(false);
     }//GEN-LAST:event_jMenuItemHistEmpActionPerformed
 
+    private void jMenuItemPagarMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPagarMultaActionPerformed
+        // TODO add your handling code here:
+        
+       JFPagarMulta jf = new JFPagarMulta(this, biblioteca);
+       jf.setLocationRelativeTo(jPanel1);
+       jf.setVisible(true);
+       
+       // Desativa funcionalidades da tabela principal
+       this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItemPagarMultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,6 +386,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemInfo;
     private javax.swing.JMenuItem jMenuItemListaLivros;
     private javax.swing.JMenuItem jMenuItemLivro;
+    private javax.swing.JMenuItem jMenuItemPagarMulta;
     private javax.swing.JMenuItem jMenuItemPeriodico;
     private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JMenuItem jMenuItemTotalMulta;

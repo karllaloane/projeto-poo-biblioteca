@@ -40,7 +40,7 @@ public class Emprestimo implements Publicavel, Serializable{
             this.item.setDisponivel(false);
             this.dataEmprestimo = dataEmprestimo;
             dataDevolucaoPrevista = this.dataEmprestimo.plusDays(item.retornaDiasEmprestimo());
-            setMultaPaga(false);
+            setMultaPaga(true);
             setEstaMultado(false);
     }
 
@@ -80,7 +80,7 @@ public class Emprestimo implements Publicavel, Serializable{
 
             // lancar excecao?
             //JOption
-            System.out.println("Numero de renovacoes excedido");
+            //System.out.println("Numero de renovacoes excedido");
             return false;
     }
 

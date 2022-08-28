@@ -36,6 +36,10 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         this.telaPrincipal = telaPrincipal;
         this.biblioteca = b;
         
+        jTFNome.setEditable(false);
+        jTFCpf.setEditable(false);
+        jTFLivro.setEditable(false);
+        
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();        
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
        
@@ -155,7 +159,9 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Empréstimo"));
 
+        jTFLivro.setBackground(new java.awt.Color(255, 255, 255));
         jTFLivro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTFLivro.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel4.setText("> Cliente");
 
@@ -165,9 +171,13 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         jLabel9.setText("CPF:");
 
+        jTFNome.setBackground(new java.awt.Color(255, 255, 255));
         jTFNome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTFNome.setForeground(new java.awt.Color(0, 0, 0));
 
+        jTFCpf.setBackground(new java.awt.Color(255, 255, 255));
         jTFCpf.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTFCpf.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -378,6 +388,7 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
     private void jBPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarClienteActionPerformed
 
+        limparCampos();
         String cpf = (jTFCpfPesquisa.getText());
 
         if(cpf.equals("")){
@@ -407,15 +418,8 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int linhaSelecionada = jTable1.getSelectedRow();
-        //desabilitaCampos();
-  
-        //int indice = Integer.parseInt((String)jTable1.getValueAt(linhaSelecionada, 0));
-        
-        System.out.println("GetValue da Tabela> " + jTable1.getValueAt(linhaSelecionada, 0));
-
-        //emprestimo = cliente.getEmprestimosAtuais().get(indice);
-
-        //jTFLivro.setText(emprestimo.getItem().getTitulo());
+       
+        jTFLivro.setText((String)jTable1.getValueAt(linhaSelecionada, 1));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTFMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMesActionPerformed
@@ -427,13 +431,10 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         LocalDate ld = null;
         boolean ok = true;
+        String titulo;
 
         if(jTFLivro.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Necessário selecionar o Livro/Periódico para realizar o empréstimo!", "Error", JOptionPane.ERROR_MESSAGE);
-            ok = false;
-        }
-        if(jTFNome.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Necessário informar o cliente para realizar o empréstimo!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Necessário selecionar o empréstimo a ser devolvido!", "Error", JOptionPane.ERROR_MESSAGE);
             ok = false;
         }
         if(jTFDia.getText().equals("") || jTFMes.getText().equals("") || jTFAno.getText().equals("")){
@@ -450,29 +451,32 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         //pode validar a data aqui
 
         if(ok){
-
-            try{
-
-                Emprestimo emp = cliente.realizarEmprestimo(item, ld);
-                biblioteca.addHistoricoEmprestimos(emp);
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-                String mensagem = "Empréstimo realizado! \n"
-                + "Cliente: " + cliente.getNome() + "\n"
-                + "Livro/Periódico: " + item.getTitulo() + "\n"
-                + "Data do empréstimo: " + ld.format(formatter) + "\n\n"
-                + "Data para devolução do empréstimo: " + emp.getDataDevolucaoPrevista().format(formatter);
-
-                JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-                limparTabela();
-                jBDevolver.setEnabled(false);
-                //limparCampos();
-
-            } catch (ItemIndisponivelException | ClienteComPendenciaException e){
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+ 
+            titulo = jTFLivro.getText();
+            
+            int indice;
+            
+            //procurando o emprestimo
+            for(indice = 0; indice < cliente.getEmprestimosAtuais().size(); indice++){
+                if(titulo.equals(cliente.getEmprestimosAtuais().get(indice).getItem().getTitulo()))
+                    break;
             }
+            cliente.devolverItem(indice, ld);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            String mensagem = "Devolução realizada com sucesso!";
+
+            if(cliente.isPenalizado()){
+                mensagem = "\n\nDEVOLUÇÃO REALIZADA COM ATRASO!!!\n"
+                        + "Valor da multa: " + cliente.getEmprestimosAtuais().get(indice).getValorMulta();
+            }
+
+           JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            limparTabela();
+            limparCampos();
+
         }
 
     }//GEN-LAST:event_jBDevolverActionPerformed
@@ -497,9 +501,13 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         LocalDate ld = null;
         boolean ok = true;
+        int indice;
+        String titulo;
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        if(jTFNome.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Necessário informar o cliente para realizar o empréstimo!", "Error", JOptionPane.ERROR_MESSAGE);
+        if(jTFLivro.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Necessário selecionar o empréstimo para renovação!", "Error", JOptionPane.ERROR_MESSAGE);
             ok = false;
         }
         if(jTFDia.getText().equals("") || jTFMes.getText().equals("") || jTFAno.getText().equals("")){
@@ -514,19 +522,39 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         }
 
         if(ok){
-            if(item.registrarReserva(cliente, ld)){
-                String mensagem = "A reserva do livro/periódico \n"
-                + item.getTitulo() + " foi realizada com sucesso\n"
-                + "para " + cliente.getNome() + "\n";
-                JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-                limparTabela();
-                jBRenovar.setEnabled(false);
-                //limparCampos();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "O livro já está reservado!", "Falha", JOptionPane.INFORMATION_MESSAGE);
+            
+            titulo = jTFLivro.getText();
+                        
+            //procurando o emprestimo
+            for(indice = 0; indice < cliente.getEmprestimosAtuais().size(); indice++){
+                if(titulo.equals(cliente.getEmprestimosAtuais().get(indice).getItem().getTitulo())){
+                    break;
+                }      
             }
+            
+            if(ld.isAfter(cliente.getEmprestimosAtuais().get(indice).getDataDevolucaoPrevista())){
+                JOptionPane.showMessageDialog(null, "Falha na renovação!\n\n"
+                        + "Impossível renovar em data posterior"
+                        + " a data de devolução prevista!\n"
+                        + "Proceda à devolução do item!", "Falha", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                if(cliente.getEmprestimosAtuais().get(indice).renovar()){
+                    String mensagem = "Empréstimo renovado com sucesso!\n\n"
+                            + "Data da renovação: " + ld.format(formatter) + "\n"
+                            + "Data prevista para devolução: " + 
+                            cliente.getEmprestimosAtuais().get(indice).getDataDevolucaoPrevista().format(formatter) + "\n";
+                    
+                    JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Impossível renovar! \n\n"
+                            + "Número máximo de renovações excedida!\n"
+                            + "Proceda à devolução do item!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            
+            limparTabela();
+            limparCampos();
         }
     }//GEN-LAST:event_jBRenovarActionPerformed
 
@@ -542,21 +570,39 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         
         limparTabela();
 
-        String[] linha = new String[] {null, null, null, null, null, null, null};
+        String[] linha = new String[] {null, null, null, null, null};
     
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        
+        int l = 0;
         
         for (int i = 0; i < emp.size(); i++) {
-            tmLivro.addRow(linha);
-            tmLivro.setValueAt(emp.get(i).getID(), i, 0);
-            tmLivro.setValueAt(emp.get(i).getItem().getTitulo(), i, 1);
-            tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), i, 2);
-            tmLivro.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), i, 3);
-            tmLivro.setValueAt(emp.get(i).getQuantidadeRenovacao(), i, 4);         
+            
+            //para exibir só os emprestimos em aberto
+            //pois se estiver multado não devolve
+            if(!emp.get(i).getEstaMultado()){
+                
+                tmLivro.addRow(linha);
+                tmLivro.setValueAt(emp.get(i).getID(), l, 0);
+                tmLivro.setValueAt(emp.get(i).getItem().getTitulo(), l, 1);
+                tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 2);
+                tmLivro.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), l, 3);
+                tmLivro.setValueAt(emp.get(i).getQuantidadeRenovacao(), l, 4);
+                l++;
+               
+            }
         }
     }
     
-    
+    public void limparCampos(){
+        jTFNome.setText("");
+        jTFCpf.setText("");
+        jTFLivro.setText("");
+        jTFAno.setText("");
+        jTFDia.setText("");
+        jTFMes.setText("");
+    }
     
     private void exibeCliente(Cliente c){
         jTFNome.setText(c.getNome());

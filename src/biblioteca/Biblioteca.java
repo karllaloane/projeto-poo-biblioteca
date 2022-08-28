@@ -176,7 +176,7 @@ public final class Biblioteca {
             
             for(int i = 0; i < itens.size(); i++){
                 if(itens.get(i) instanceof Periodico){
-                    if(itens.get(i).getTitulo().contains(nome))
+                    if(itens.get(i).getTitulo().toLowerCase().contains(nome.toLowerCase()))
                         periodicos.add((Periodico)itens.get(i));
                 }
             }

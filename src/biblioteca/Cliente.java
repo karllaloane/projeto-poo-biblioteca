@@ -81,15 +81,15 @@ public class Cliente extends Pessoa {
             Emprestimo e = this.emprestimosAtuais.get(i);
 
             e.setDataDevolucao(data);
-
             multa = e.calcularMulta();
 
             if(multa > 0) { //se a multa for maior que zero, usuario e penalizado
                     setPenalizado(true);
+            } else {
+                    this.emprestimosAtuais.remove(e); //remove o objeto se não houver multa
             }
 
-            e.getItem().setDisponivel(true); //livro foi devolvido mesmo com multa
-
+            e.getItem().setDisponivel(true); //livro foi devolvido mesmo com multa     
     }
 
     /** Método criado para representar o pagamento de eventual multa devida pelo
@@ -100,19 +100,26 @@ public class Cliente extends Pessoa {
 
             double valorTotal = 0;
 
-            for(Emprestimo e : emprestimosAtuais) {
+            while(!emprestimosAtuais.isEmpty()){
+                for(int i = 0; i < emprestimosAtuais.size(); i++) {
 
                     //vai pegar os emprestimos que esta multado, alterar estado da multa
                     //e finalmente remover dos emprestimos atuais
+                    
+                    System.out.println("OK");
+                    valorTotal += emprestimosAtuais.get(i).getValorMulta();
 
-                    valorTotal += e.getValorMulta();
-
-                    if(e.getEstaMultado()) {
-                            e.setMultaPaga(true);
+                    if(emprestimosAtuais.get(i).getEstaMultado()) {
+                            emprestimosAtuais.get(i).setMultaPaga(true);
+                            
+                            Emprestimo e = emprestimosAtuais.get(i);
+                            
                             emprestimosAtuais.remove(e);
                     }	
+                }   
             }
-            System.out.println("Valor da multa paga: " + valorTotal);
+            
+
             this.setPenalizado(false);
     }
 

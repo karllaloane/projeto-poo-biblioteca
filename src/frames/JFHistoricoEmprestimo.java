@@ -89,7 +89,7 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel1.setText("Historico de Empréstimos");
 
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Em aberto" }));
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Em aberto", "Com multa" }));
         jComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxActionPerformed(evt);
@@ -143,6 +143,9 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
         } else if (selected.equals("Em aberto")) {
             ArrayList<Emprestimo> emp = biblioteca.exibirEmprestimosEmAberto(); 
             listarEmprestimos(emp);
+        } else if (selected.equals("Com multa")) {
+            ArrayList<Emprestimo> emp = biblioteca.getHistoricoEmprestimos(); 
+            listarEmprestimosComMulta(emp);
         }
     }//GEN-LAST:event_jComboBoxActionPerformed
 
@@ -168,16 +171,48 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
             tmLista.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), i, 3);
             tmLista.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), i, 4);
             
-            if(emp.get(i).getDataDevolucao() == null){
+            if(emp.get(i).getDataDevolucao() == null){               
                 tmLista.setValueAt("-", i, 5);
                 tmLista.setValueAt("Em aberto", i, 6);
-            } else {
+                
+            } else if(emp.get(i).getDataDevolucao() != null && !emp.get(i).isMultaPaga()){               
+                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), i, 5);
+                tmLista.setValueAt("Com multa", i, 6);
+                
+            }else {
                 tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), i, 5);
                 tmLista.setValueAt("Finalizado", i, 6);
             }
         }
-           
+          
     }
+    
+    public void listarEmprestimosComMulta(ArrayList<Emprestimo> emp){
+        limparTabela();
+
+        String[] linha = new String[] {null, null, null, null, null, null, null};
+    
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        int l = 0;
+        
+        for (int i = 0; i < emp.size(); i++) {
+            
+            if(emp.get(i).getDataDevolucao() != null && !emp.get(i).isMultaPaga()){
+                tmLista.addRow(linha);
+                tmLista.setValueAt(emp.get(i).getID(), l, 0);
+                tmLista.setValueAt(emp.get(i).getItem().getTitulo(), l, 1);
+                tmLista.setValueAt(emp.get(i).getCliente().getNome(), l, 2);
+                tmLista.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 3);
+                tmLista.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), l, 4);
+                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), l, 5);
+                tmLista.setValueAt("Com multa", l, 6);
+                l++;
+            } 
+        }
+          
+    }
+    
     
     private void limparTabela() {       
         while (tmLista.getRowCount() > 0) {            
