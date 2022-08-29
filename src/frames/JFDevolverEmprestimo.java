@@ -22,7 +22,7 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
     private ItemAcervo item;
     private Emprestimo emprestimo;
     
-    DefaultTableModel tmLivro = new DefaultTableModel(null, new String[]{"ID", "Livro", "Data Empréstimo", "Entrega Prevista", "Renovado"});
+    DefaultTableModel tmLivro = new DefaultTableModel(null, new String[]{"Livro", "Data Empréstimo", "Entrega Prevista", "Renovado"});
     /**
      * Creates new form JFDevolverEmprestimo
      */
@@ -43,16 +43,16 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();        
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
        
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        //jTable1.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(2).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(centralizado);
         
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(380);
+        //jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(380);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(85);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(85);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(85);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(50);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(50);
     }
 
     /**
@@ -419,7 +419,7 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         // TODO add your handling code here:
         int linhaSelecionada = jTable1.getSelectedRow();
        
-        jTFLivro.setText((String)jTable1.getValueAt(linhaSelecionada, 1));
+        jTFLivro.setText((String)jTable1.getValueAt(linhaSelecionada, 0));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTFMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMesActionPerformed
@@ -462,8 +462,8 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
                 if(titulo.equals(cliente.getEmprestimos().get(indice).getItem().getTitulo()))
                     break;
             }
-            
-            cliente.devolverItem(indice, ld);
+
+            cliente.devolverItem(indice, ld);    
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -587,11 +587,11 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
             if(emp.get(i).getDataDevolucao() == null){
                 
                 tmLivro.addRow(linha);
-                tmLivro.setValueAt(emp.get(i).getID(), l, 0);
-                tmLivro.setValueAt(emp.get(i).getItem().getTitulo(), l, 1);
-                tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 2);
-                tmLivro.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), l, 3);
-                tmLivro.setValueAt(emp.get(i).getQuantidadeRenovacao(), l, 4);
+                //tmLivro.setValueAt(emp.get(i).getID(), l, 0);
+                tmLivro.setValueAt(emp.get(i).getItem().getTitulo(), l, 0);
+                tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 1);
+                tmLivro.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), l, 2);
+                tmLivro.setValueAt(emp.get(i).getQuantidadeRenovacao(), l, 3);
                 l++;
                
             }

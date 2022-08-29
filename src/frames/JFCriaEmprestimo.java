@@ -2,6 +2,7 @@
 package frames;
 
 import biblioteca.*;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -454,7 +455,6 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Nenhum registro encontrado!", "Error", JOptionPane.ERROR_MESSAGE);
                     jTFLivro.setText("");
                 } else {
-                    System.out.println("ENTROU AQUI");
                     limparTabela();
                     
                     String[] linha = new String[] {null, null, null};
@@ -593,11 +593,9 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
             int mes = Integer.parseInt(jTFMes.getText());
             int ano = Integer.parseInt(jTFAno.getText());
         
-            ld = LocalDate.of(ano, mes, dia);
+            ld = LocalDate.of(ano, mes, dia); 
         }
-
-        //pode validar a data aqui
-        
+     
         if(ok){
           
             try{

@@ -21,7 +21,7 @@ private TelaPrincipal telaPrincipal;
     private Biblioteca biblioteca;
     private Cliente cliente;
     
-    DefaultTableModel tmLivro = new DefaultTableModel(null, new String[]{"ID", "Livro", "Data Empréstimo", "Data Entrega", "Valor Multa"});
+    DefaultTableModel tmLivro = new DefaultTableModel(null, new String[]{"Livro", "Data Empréstimo", "Data Entrega", "Valor Multa"});
         
     /**
      * Creates new form JFPagarMulta
@@ -42,16 +42,16 @@ private TelaPrincipal telaPrincipal;
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();        
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
        
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        //jTable1.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(2).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(centralizado);
         
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(180);
+        //jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(180);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
         
     }
 
@@ -341,11 +341,11 @@ private TelaPrincipal telaPrincipal;
             if(emp.get(i).getEstaMultado() && !emp.get(i).isMultaPaga()){
                 
                 tmLivro.addRow(linha);
-                tmLivro.setValueAt(emp.get(i).getID(), l, 0);
-                tmLivro.setValueAt(emp.get(i).getItem().getTitulo(), l, 1);
-                tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 2);
-                tmLivro.setValueAt(emp.get(i).getDataDevolucao().format(formatter), l, 3);
-                tmLivro.setValueAt(emp.get(i).getValorMulta(), l, 4);
+                //tmLivro.setValueAt(emp.get(i).getID(), l, 0);
+                tmLivro.setValueAt(" " + emp.get(i).getItem().getTitulo(), l, 0);
+                tmLivro.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 1);
+                tmLivro.setValueAt(emp.get(i).getDataDevolucao().format(formatter), l, 2);
+                tmLivro.setValueAt(emp.get(i).getValorMulta(), l, 3);
                 
                 totalMulta += emp.get(i).getValorMulta();
                 

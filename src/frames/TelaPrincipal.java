@@ -167,6 +167,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuEmprestimo.add(jMenuItemBuscarEmp);
 
         jMenuItemCancelarReserva.setText("Cancelar Reserva");
+        jMenuItemCancelarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCancelarReservaActionPerformed(evt);
+            }
+        });
         jMenuEmprestimo.add(jMenuItemCancelarReserva);
 
         jMenuBar1.add(jMenuEmprestimo);
@@ -334,6 +339,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
        // Desativa funcionalidades da tabela principal
        this.setEnabled(false);
     }//GEN-LAST:event_jMenuItemPagarMultaActionPerformed
+
+    private void jMenuItemCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCancelarReservaActionPerformed
+        // TODO add your handling code here:
+       JFCancelaReserva jf = new JFCancelaReserva(this, biblioteca);
+       jf.setLocationRelativeTo(jPanel1);
+       jf.setVisible(true);
+       
+       // Desativa funcionalidades da tabela principal
+       this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItemCancelarReservaActionPerformed
 
     /**
      * @param args the command line arguments

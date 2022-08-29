@@ -41,6 +41,8 @@ public class BibliotecaApp {
             //Logger.getLogger(BibliotecaApp.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Falha na persistência de dados!", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        ItemAcervo.setTotalItens(biblioteca.getItens().size());
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

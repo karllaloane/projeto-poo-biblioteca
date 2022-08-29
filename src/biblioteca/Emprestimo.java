@@ -17,9 +17,7 @@ public class Emprestimo implements Publicavel, Serializable{
 	
     private static int maxRenovacao = 3;
     private int quantRenovado = 0;
-    private static int totalEmp;
 
-    private int ID;
     private double valorMulta;
     private boolean multaPaga;
     private boolean estaMultado;
@@ -32,8 +30,7 @@ public class Emprestimo implements Publicavel, Serializable{
     private ItemAcervo item;
 
     public Emprestimo(Cliente cliente, ItemAcervo item, LocalDate dataEmprestimo) {
-            totalEmp++;
-            this.ID = totalEmp;
+
             this.quantRenovado = 0;
             this.cliente = cliente;
             this.item = item;
@@ -226,19 +223,7 @@ public class Emprestimo implements Publicavel, Serializable{
     public LocalDate getDataDevolucao() {
             return dataDevolucao;
     }
-    
-    /** Método que retorna o ID do empréstimo
-     * 
-     * @return int - ID
-     */
-    public int getID(){
-            return this.ID;
-    }
-    
-    public static void setTotalEmp(int totalEmp){
-        totalEmp = totalEmp;
-    }
-    
+       
     /** Método toString que retorna os dados do Emprestimo
      * 
      * @return String

@@ -172,6 +172,10 @@ public abstract class ItemAcervo implements Serializable{
             this.reservado = reservado;
     }
 
+    
+    public static void setTotalItens(int tam){
+        ItemAcervo.totalItens = tam;
+    }
     /** Método toString que retorna os dados do item
      * 
      * @return String - concatenação dos dados do item

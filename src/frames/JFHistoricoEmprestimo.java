@@ -5,8 +5,11 @@
 package frames;
 
 import biblioteca.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -21,7 +24,7 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
     private TelaPrincipal telaPrincipal;
     private Biblioteca biblioteca;
     
-    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"ID", "Livro", "Cliente", "Data Empréstimo", "Entrega Prevista", "Devolvido em", "Situação"});
+    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"Livro", "Cliente", "Data Empréstimo", "Entrega Prevista", "Devolvido em", "Situação", "Multa"});
     
     /**
      * Creates new form JFHistoricoEmprestimo
@@ -39,19 +42,20 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();        
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
        
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(5).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(6).setCellRenderer(centralizado);
         
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(180);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(85);
+        //jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(180);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(90);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(80);
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(50);
         
         ArrayList<Emprestimo> emp = biblioteca.buscTodosEmprestimos();
         listarEmprestimos(emp);
@@ -71,6 +75,7 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -98,6 +103,8 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
 
         jLabel2.setText("Filtrar:");
 
+        jLabel3.setText("* Com multa não paga");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,8 +119,13 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,8 +136,10 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
                     .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
 
         pack();
@@ -157,32 +171,37 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
 
     public void listarEmprestimos(ArrayList<Emprestimo> emp){
         limparTabela();
-
+        
+        //ArrayList<Emprestimo> lista = new ArrayList<Emprestimo>(emp);
+        //lista.sort(Comparator.comparing(Emprestimo::getDataEmprestimo));
+        //Collections.sort(lista, Comparator.comparing((Emprestimo e) -> e.getDataEmprestimo()));
+        ArrayList<Emprestimo> lista = emp;
         String[] linha = new String[] {null, null, null, null, null, null, null};
-        //"Livro", "Cliente", "Data Empréstimo", "Entrega Prevista", "Situação"
-    
+           
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
-        for (int i = 0; i < emp.size(); i++) {
+        for (int i = 0; i < lista.size(); i++) {
             tmLista.addRow(linha);
-            tmLista.setValueAt(emp.get(i).getID(), i, 0);
-            tmLista.setValueAt(emp.get(i).getItem().getTitulo(), i, 1);
-            tmLista.setValueAt(emp.get(i).getCliente().getNome(), i, 2);
-            tmLista.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), i, 3);
-            tmLista.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), i, 4);
+            //tmLista.setValueAt(emp.get(i).getID(), i, 0);
+            tmLista.setValueAt(" " + lista.get(i).getItem().getTitulo(), i, 0);
+            tmLista.setValueAt(" " + lista.get(i).getCliente().getNome(), i, 1);
+            tmLista.setValueAt(lista.get(i).getDataEmprestimo().format(formatter), i, 2);
+            tmLista.setValueAt(lista.get(i).getDataDevolucaoPrevista().format(formatter), i, 3);
             
-            if(emp.get(i).getDataDevolucao() == null){               
-                tmLista.setValueAt("-", i, 5);
-                tmLista.setValueAt("Em aberto", i, 6);
+            if(lista.get(i).getDataDevolucao() == null){               
+                tmLista.setValueAt("-", i, 4);
+                tmLista.setValueAt("Em aberto", i, 5);
                 
-            } else if(emp.get(i).getDataDevolucao() != null && !emp.get(i).isMultaPaga()){               
-                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), i, 5);
-                tmLista.setValueAt("Com multa", i, 6);
+            } else if(lista.get(i).getDataDevolucao() != null && !lista.get(i).isMultaPaga()){               
+                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), i, 4);
+                tmLista.setValueAt("Com multa*", i, 5);
                 
             }else {
-                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), i, 5);
-                tmLista.setValueAt("Finalizado", i, 6);
+                tmLista.setValueAt(lista.get(i).getDataDevolucao().format(formatter), i, 4);
+                tmLista.setValueAt("Finalizado", i, 5);
             }
+            
+            tmLista.setValueAt(lista.get(i).getValorMulta(), i, 6);
         }
           
     }
@@ -200,13 +219,14 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
             
             if(emp.get(i).getDataDevolucao() != null && !emp.get(i).isMultaPaga()){
                 tmLista.addRow(linha);
-                tmLista.setValueAt(emp.get(i).getID(), l, 0);
-                tmLista.setValueAt(emp.get(i).getItem().getTitulo(), l, 1);
-                tmLista.setValueAt(emp.get(i).getCliente().getNome(), l, 2);
-                tmLista.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 3);
-                tmLista.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), l, 4);
-                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), l, 5);
-                tmLista.setValueAt("Com multa", l, 6);
+                //tmLista.setValueAt(emp.get(i).getID(), l, 0);
+                tmLista.setValueAt(" " + emp.get(i).getItem().getTitulo(), l, 0);
+                tmLista.setValueAt(" " + emp.get(i).getCliente().getNome(), l, 1);
+                tmLista.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 2);
+                tmLista.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), l, 3);
+                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), l, 4);
+                tmLista.setValueAt("Com multa*", l, 5);
+                tmLista.setValueAt(emp.get(i).getValorMulta(), l, 6);
                 l++;
             } 
         }
@@ -259,6 +279,7 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

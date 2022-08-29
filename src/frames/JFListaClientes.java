@@ -5,7 +5,9 @@
 package frames;
 
 import biblioteca.*;
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.Comparator;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +22,7 @@ public class JFListaClientes extends javax.swing.JFrame {
 
     private TelaPrincipal telaPrincipal;
     private Biblioteca biblioteca;
-    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"Nome", "CPF", "Telefone", "Empréstimos ativos"});
+    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"Nome", "CPF", "Telefone", "Empréstimos ativos", "Penalizado?"});
     
     /**
      * Creates new form JFListaClientes
@@ -38,15 +40,17 @@ public class JFListaClientes extends javax.swing.JFrame {
         
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();        
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(2).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(centralizado);
         
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(250);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
-        
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
+
         listarTodos();
     }
 
@@ -54,16 +58,23 @@ public class JFListaClientes extends javax.swing.JFrame {
         
         ArrayList<Cliente> cliente = biblioteca.getClientes();
         
+        cliente.sort(Comparator.comparing(Cliente::getNome));
+        
         limparTabela();
         
         String[] linha = new String[] {null, null, null, null};
         
         for (int i = 0; i < cliente.size(); i++) {
             tmLista.addRow(linha);
-            tmLista.setValueAt(cliente.get(i).getNome(), i, 0);
+            tmLista.setValueAt(" " + cliente.get(i).getNome(), i, 0);
             tmLista.setValueAt(cliente.get(i).getCpf(), i, 1);
             tmLista.setValueAt(cliente.get(i).getTelefone(), i, 2);
             tmLista.setValueAt(cliente.get(i).getQuantEmprestimosAtivos(), i, 3);
+            if(cliente.get(i).isPenalizado()){
+                tmLista.setValueAt("Sim", i, 4);
+            } else {
+                tmLista.setValueAt("Não", i, 4);
+            }
         }
     }
 
@@ -94,7 +105,7 @@ public class JFListaClientes extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel1.setText("                                                                           Lista de Clientes");
+        jLabel1.setText("                                                                                 Lista de Clientes");
 
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTable1.setModel(tmLista);
@@ -110,9 +121,9 @@ public class JFListaClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,8 +131,8 @@ public class JFListaClientes extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
