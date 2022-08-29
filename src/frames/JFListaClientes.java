@@ -57,9 +57,7 @@ public class JFListaClientes extends javax.swing.JFrame {
     private void listarTodos(){
         
         ArrayList<Cliente> cliente = biblioteca.getClientes();
-        
-        cliente.sort(Comparator.comparing(Cliente::getNome));
-        
+
         limparTabela();
         
         String[] linha = new String[] {null, null, null, null};

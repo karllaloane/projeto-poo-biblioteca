@@ -593,7 +593,16 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
             int mes = Integer.parseInt(jTFMes.getText());
             int ano = Integer.parseInt(jTFAno.getText());
         
-            ld = LocalDate.of(ano, mes, dia); 
+            try{
+                ld = LocalDate.of(ano, mes, dia);
+            } catch(DateTimeException e){
+                JOptionPane.showMessageDialog(null, "Data inválida!\n\n"
+                        + "Informe a data novamente!", "Error", JOptionPane.ERROR_MESSAGE);
+                jTFDia.setText("");
+                jTFMes.setText("");
+                jTFAno.setText("");
+                ok = false;    
+            }  
         }
      
         if(ok){
@@ -667,7 +676,16 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
             int mes = Integer.parseInt(jTFMes.getText());
             int ano = Integer.parseInt(jTFAno.getText());
         
-            ld = LocalDate.of(ano, mes, dia);
+            try{
+                ld = LocalDate.of(ano, mes, dia);
+            } catch(DateTimeException e){
+                JOptionPane.showMessageDialog(null, "Data inválida!\n\n"
+                        + "Informe a data novamente!", "Error", JOptionPane.ERROR_MESSAGE);
+                jTFDia.setText("");
+                jTFMes.setText("");
+                jTFAno.setText("");
+                ok = false;    
+            }
         }
         if(ok){
             try{

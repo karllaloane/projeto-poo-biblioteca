@@ -2,6 +2,7 @@
 package frames;
 
 import biblioteca.*;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -445,7 +446,16 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
             int mes = Integer.parseInt(jTFMes.getText());
             int ano = Integer.parseInt(jTFAno.getText());
 
-            ld = LocalDate.of(ano, mes, dia);
+            try{
+                ld = LocalDate.of(ano, mes, dia);
+            } catch(DateTimeException e){
+                JOptionPane.showMessageDialog(null, "Data inválida!\n\n"
+                        + "Informe a data novamente!", "Error", JOptionPane.ERROR_MESSAGE);
+                jTFDia.setText("");
+                jTFMes.setText("");
+                jTFAno.setText("");
+                ok = false;    
+            }
         }
 
         //pode validar a data aqui
@@ -520,7 +530,16 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
             int mes = Integer.parseInt(jTFMes.getText());
             int ano = Integer.parseInt(jTFAno.getText());
 
-            ld = LocalDate.of(ano, mes, dia);
+            try{
+                ld = LocalDate.of(ano, mes, dia);
+            } catch(DateTimeException e){
+                JOptionPane.showMessageDialog(null, "Data inválida!\n\n"
+                        + "Informe a data novamente!", "Error", JOptionPane.ERROR_MESSAGE);
+                jTFDia.setText("");
+                jTFMes.setText("");
+                jTFAno.setText("");
+                ok = false;    
+            }
         }
 
         if(ok){

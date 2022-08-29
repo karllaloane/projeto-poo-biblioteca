@@ -5,6 +5,7 @@
 package frames;
 
 import biblioteca.*;
+import controle.SortByData;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -172,10 +173,11 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
     public void listarEmprestimos(ArrayList<Emprestimo> emp){
         limparTabela();
         
-        //ArrayList<Emprestimo> lista = new ArrayList<Emprestimo>(emp);
-        //lista.sort(Comparator.comparing(Emprestimo::getDataEmprestimo));
-        //Collections.sort(lista, Comparator.comparing((Emprestimo e) -> e.getDataEmprestimo()));
-        ArrayList<Emprestimo> lista = emp;
+        
+        ArrayList<Emprestimo> lista = new ArrayList<Emprestimo>(emp);        
+        Collections.sort(lista, new SortByData());
+        
+        //ArrayList<Emprestimo> lista = emp;
         String[] linha = new String[] {null, null, null, null, null, null, null};
            
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -208,6 +210,9 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
     
     public void listarEmprestimosComMulta(ArrayList<Emprestimo> emp){
         limparTabela();
+        
+        ArrayList<Emprestimo> lista = new ArrayList<Emprestimo>(emp);        
+        Collections.sort(lista, new SortByData());
 
         String[] linha = new String[] {null, null, null, null, null, null, null};
     
@@ -217,16 +222,16 @@ public class JFHistoricoEmprestimo extends javax.swing.JFrame {
         
         for (int i = 0; i < emp.size(); i++) {
             
-            if(emp.get(i).getDataDevolucao() != null && !emp.get(i).isMultaPaga()){
+            if(lista.get(i).getDataDevolucao() != null && !lista.get(i).isMultaPaga()){
                 tmLista.addRow(linha);
                 //tmLista.setValueAt(emp.get(i).getID(), l, 0);
-                tmLista.setValueAt(" " + emp.get(i).getItem().getTitulo(), l, 0);
-                tmLista.setValueAt(" " + emp.get(i).getCliente().getNome(), l, 1);
-                tmLista.setValueAt(emp.get(i).getDataEmprestimo().format(formatter), l, 2);
-                tmLista.setValueAt(emp.get(i).getDataDevolucaoPrevista().format(formatter), l, 3);
-                tmLista.setValueAt(emp.get(i).getDataDevolucao().format(formatter), l, 4);
+                tmLista.setValueAt(" " + lista.get(i).getItem().getTitulo(), l, 0);
+                tmLista.setValueAt(" " + lista.get(i).getCliente().getNome(), l, 1);
+                tmLista.setValueAt(lista.get(i).getDataEmprestimo().format(formatter), l, 2);
+                tmLista.setValueAt(lista.get(i).getDataDevolucaoPrevista().format(formatter), l, 3);
+                tmLista.setValueAt(lista.get(i).getDataDevolucao().format(formatter), l, 4);
                 tmLista.setValueAt("Com multa*", l, 5);
-                tmLista.setValueAt(emp.get(i).getValorMulta(), l, 6);
+                tmLista.setValueAt(lista.get(i).getValorMulta(), l, 6);
                 l++;
             } 
         }

@@ -2,6 +2,7 @@ package frames;
 
 import biblioteca.*;
 import java.text.ParseException;
+import java.util.Comparator;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -508,6 +509,8 @@ public class JFCliente extends javax.swing.JFrame {
             
             this.alteracao = false;
             
+            biblioteca.getClientes().sort(Comparator.comparing(Cliente::getNome));
+            
             JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
             Endereco e;
@@ -521,6 +524,7 @@ public class JFCliente extends javax.swing.JFrame {
             Cliente c3 = new Cliente(nome, cpf, fone, email, e);
 
             biblioteca.addClientes(c3);
+            biblioteca.getClientes().sort(Comparator.comparing(Cliente::getNome));
             
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
