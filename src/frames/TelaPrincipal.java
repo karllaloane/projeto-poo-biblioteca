@@ -207,6 +207,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuAjuda.add(jMenuItemInfo);
 
         jMenuItemSobre.setText("Sobre");
+        jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSobreActionPerformed(evt);
+            }
+        });
         jMenuAjuda.add(jMenuItemSobre);
 
         jMenuBar1.add(jMenuAjuda);
@@ -232,6 +237,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInfoActionPerformed
         // TODO add your handling code here:
+        JFAjuda f = new JFAjuda(this);
+        f.setLocationRelativeTo(jPanel1);
+        f.setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_jMenuItemInfoActionPerformed
 
     private void jMenuItemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClienteActionPerformed
@@ -349,6 +358,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
        // Desativa funcionalidades da tabela principal
        this.setEnabled(false);
     }//GEN-LAST:event_jMenuItemCancelarReservaActionPerformed
+
+    private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
+        // TODO add your handling code here:
+        
+        JOptionPane.showMessageDialog(null, "Projeto final desenvolvido para a disciplina de Programação Orientada "
+                + "a Objetos.\n\n"
+                + "Turma: Engenharia de Software - 2022/1\n\n"
+                + "Discentes:\n"
+                + "      - Gabriel Reis\n"
+                + "      - Karlla Loane\n"
+                + "      - Luiz Felipe\n", "Error", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
     /**
      * @param args the command line arguments
