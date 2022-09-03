@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -79,6 +80,9 @@ public class Cliente extends Pessoa {
             double multa = 0;
 
             Emprestimo e = this.emprestimos.get(i);
+            
+            if(e.getDataEmprestimo().isAfter(data))
+                throw new DateTimeException("A data informada é anterior ao empréstimo");
 
             e.setDataDevolucao(data);
             multa = e.calcularMulta();

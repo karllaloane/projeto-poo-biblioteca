@@ -160,9 +160,7 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Empréstimo"));
 
-        jTFLivro.setBackground(new java.awt.Color(255, 255, 255));
         jTFLivro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTFLivro.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel4.setText("> Cliente");
 
@@ -172,13 +170,9 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         jLabel9.setText("CPF:");
 
-        jTFNome.setBackground(new java.awt.Color(255, 255, 255));
         jTFNome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTFNome.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTFCpf.setBackground(new java.awt.Color(255, 255, 255));
         jTFCpf.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTFCpf.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -224,7 +218,7 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
-        jLabel7.setText("Data de realização do empréstimo / reserva:");
+        jLabel7.setText("Data de realização da devolução / renovação:");
 
         jLabel8.setText("Dia:");
 
@@ -243,8 +237,11 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -253,13 +250,10 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFMes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTFAno, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTFAno, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -473,22 +467,28 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
                     break;
             }
 
-            cliente.devolverItem(indice, ld);    
+            try { 
+                cliente.devolverItem(indice, ld);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String mensagem = "Devolução realizada com sucesso!";
 
-            String mensagem = "Devolução realizada com sucesso!";
+                if(cliente.isPenalizado() && cliente.getEmprestimos().get(indice).getEstaMultado()){
+                    mensagem = "\n\nDEVOLUÇÃO REALIZADA COM ATRASO!!!\n"
+                            + "Valor da multa: " + cliente.getEmprestimos().get(indice).getValorMulta();
+                }
 
-            if(cliente.isPenalizado() && cliente.getEmprestimos().get(indice).getEstaMultado()){
-                mensagem = "\n\nDEVOLUÇÃO REALIZADA COM ATRASO!!!\n"
-                        + "Valor da multa: " + cliente.getEmprestimos().get(indice).getValorMulta();
-            }
+                JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-           JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-            limparTabela();
-            limparCampos();
-
+                limparTabela();
+                limparCampos();
+            } catch(DateTimeException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage()
+                        + "Informe a data novamente!", "Error", JOptionPane.ERROR_MESSAGE);
+                jTFDia.setText("");
+                jTFMes.setText("");
+                jTFAno.setText("");
+            }    
         }
 
     }//GEN-LAST:event_jBDevolverActionPerformed
@@ -553,13 +553,8 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
                 }      
             }
             
-            if(ld.isAfter(cliente.getEmprestimos().get(indice).getDataDevolucaoPrevista())){
-                JOptionPane.showMessageDialog(null, "Falha na renovação!\n\n"
-                        + "Impossível renovar em data posterior"
-                        + " a data de devolução prevista!\n"
-                        + "Proceda à devolução do item!", "Falha", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                if(cliente.getEmprestimos().get(indice).renovar()){
+            try {
+                if(cliente.getEmprestimos().get(indice).renovar(ld)){
                     String mensagem = "Empréstimo renovado com sucesso!\n\n"
                             + "Data da renovação: " + ld.format(formatter) + "\n"
                             + "Data prevista para devolução: " + 
@@ -575,6 +570,14 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
                 
                 limparTabela();
                 limparCampos();
+            } catch (ItemIndisponivelException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (DateTimeException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage()
+                        + "Informe a data novamente!", "Error", JOptionPane.ERROR_MESSAGE);
+                jTFDia.setText("");
+                jTFMes.setText("");
+                jTFAno.setText("");
             }
   
         }

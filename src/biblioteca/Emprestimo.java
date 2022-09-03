@@ -1,6 +1,7 @@
 package biblioteca;
 
 import java.io.Serializable;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -61,26 +62,35 @@ public class Emprestimo implements Publicavel, Serializable{
 
     /** Método para renovar o empréstimo
      * 
+     * @param data - LocalDate que indica a data da renovação
      * @return true, se a renovação deu certo; false, caso contrário.
      */
-    public boolean renovar() {
+    public boolean renovar(LocalDate data) {
+        
+        if(this.dataDevolucaoPrevista.isBefore(data))
+            throw new ItemIndisponivelException("Impossível renovar em data posterior"
+                        + " a data de devolução prevista!\n"
+                        + "Proceda à devolução do item!");
+        
+        if(this.dataEmprestimo.isAfter(data))
+            throw new DateTimeException("A data informada é anterior ao empréstimo");
 
-            if(quantRenovado < maxRenovacao) { //arrumar melhor jeito de guardar a quant de emprestimos
+        if(quantRenovado < maxRenovacao) { //arrumar melhor jeito de guardar a quant de emprestimos
 
-                    quantRenovado++;
+            quantRenovado++;
 
-                    //manter a devolucao como sendo data do dia + dias emprestimo
-                    //ou dataPrevista + dias emprestimo ?
-                    dataDevolucaoPrevista = this.dataDevolucaoPrevista.plusDays(item.retornaDiasEmprestimo());
+            //manter a devolucao como sendo data do dia + dias emprestimo
+            //ou dataPrevista + dias emprestimo ?
+            dataDevolucaoPrevista = this.dataDevolucaoPrevista.plusDays(item.retornaDiasEmprestimo());
 
-                    return true;
+            return true;
 
-            }
+        }
 
-            // lancar excecao?
-            //JOption
-            //System.out.println("Numero de renovacoes excedido");
-            return false;
+        // lancar excecao?
+        //JOption
+        //System.out.println("Numero de renovacoes excedido");
+        return false;
     }
 
 
