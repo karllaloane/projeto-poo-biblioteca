@@ -26,6 +26,10 @@ public class Pessoa implements Serializable{
             this.endereco = endereco;
     }
 
+    public int getID() {
+            return ID;
+    }
+    
     public String getNome() {
             return nome;
     }
@@ -64,6 +68,10 @@ public class Pessoa implements Serializable{
 
     public void setEndereco(Endereco endereco) {
             this.endereco = endereco;
+    }
+    
+    public static void setNumPessoa(int numPessoa){
+        Pessoa.numPessoa = numPessoa;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class JFListaTitulos extends javax.swing.JFrame {
 
     private TelaPrincipal telaPrincipal;
     private Biblioteca biblioteca;
-    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"ID", "Título", "Editora", "Categoria", "Disponível", "Reservado"});
+    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"ID", "Título", "Editora", "Vol", "Categoria", "Disponível", "Reservado"});
     
     /**
      * Creates new form JFListaTitulos
@@ -41,10 +41,12 @@ public class JFListaTitulos extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(3).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+        jTable1.getColumnModel().getColumn(6).setCellRenderer(centralizado);
         
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(2);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(2);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(5);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(280);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(2);
@@ -58,7 +60,7 @@ public class JFListaTitulos extends javax.swing.JFrame {
         
         limparTabela();
         
-        String[] linha = new String[] {null, null, null, null};
+        String[] linha = new String[] {null, null, null, null, null, null};
         
         for (int i = 0; i < item.size(); i++) {
             tmLista.addRow(linha);
@@ -66,20 +68,22 @@ public class JFListaTitulos extends javax.swing.JFrame {
             tmLista.setValueAt(" " + item.get(i).getTitulo(), i, 1);
             tmLista.setValueAt(" " + item.get(i).getEditora(), i, 2);
             if(item.get(i) instanceof Livro){
-                tmLista.setValueAt("Livro", i, 3);
+                tmLista.setValueAt("Livro", i, 4);
+                tmLista.setValueAt(" ", i, 3);
             } else {
-                tmLista.setValueAt("Periódico", i, 3);
+                tmLista.setValueAt("Periódico", i, 4);
+                tmLista.setValueAt(((Periodico) item.get(i)).getVolume(), i, 3);
             }
             if(item.get(i).isDisponivel()){
-                tmLista.setValueAt("Sim", i, 4);
-            } else {
-                tmLista.setValueAt("Não", i, 4);
-            }
-            
-            if(item.get(i).isReservado()){
                 tmLista.setValueAt("Sim", i, 5);
             } else {
                 tmLista.setValueAt("Não", i, 5);
+            }
+            
+            if(item.get(i).isReservado()){
+                tmLista.setValueAt("Sim", i, 6);
+            } else {
+                tmLista.setValueAt("Não", i, 6);
             }
             
             

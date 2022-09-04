@@ -74,8 +74,6 @@ public class JFCliente extends javax.swing.JFrame {
         jTCep = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jTNumero = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jTComplemento = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jBNovo = new javax.swing.JButton();
         jBSalvar = new javax.swing.JButton();
@@ -185,8 +183,6 @@ public class JFCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("Complemento:");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -199,17 +195,15 @@ public class JFCliente extends javax.swing.JFrame {
                             .addComponent(jLabel13)
                             .addGap(18, 18, 18)
                             .addComponent(jTNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel5)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel5))
+                            .addGap(431, 431, 431)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -256,7 +250,7 @@ public class JFCliente extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -274,11 +268,7 @@ public class JFCliente extends javax.swing.JFrame {
                     .addComponent(jTRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jTNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -348,7 +338,7 @@ public class JFCliente extends javax.swing.JFrame {
                 .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -371,16 +361,13 @@ public class JFCliente extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -484,7 +471,6 @@ public class JFCliente extends javax.swing.JFrame {
         String rua = jTRua.getText();
         String cep = jTCep.getText();
         String numeroString = jTNumero.getText();
-        String comp = jTComplemento.getText();
         
         if(nome.isBlank()||cpf.isBlank()||fone.isBlank()||email.isBlank()||
                 cidade.isBlank()||bairro.isBlank()||rua.isBlank()||cep.isBlank()
@@ -503,7 +489,6 @@ public class JFCliente extends javax.swing.JFrame {
             cliente.getEndereco().setCidade(cidade);
             cliente.getEndereco().setBairro(bairro);
             cliente.getEndereco().setCep(cep);
-            cliente.getEndereco().setComplemento(comp);
             cliente.getEndereco().setNumero(numero);
             cliente.getEndereco().setRua(rua);
             
@@ -515,18 +500,20 @@ public class JFCliente extends javax.swing.JFrame {
         } else {
             Endereco e;
         
-            if(comp.equals("")){
+            try{
+                biblioteca.procurarCliente(cpf);
+                JOptionPane.showMessageDialog(null, "Já existe um cliente com este CPF!", "Erro", JOptionPane.ERROR_MESSAGE);
+                
+            } catch(BuscaFalhouException ex){
                 e = new Endereco(cep, cidade, bairro, rua, numero);
-            } else {
-                e = new Endereco(cep, cidade, bairro, rua, numero, comp);
-            }
 
-            Cliente c3 = new Cliente(nome, cpf, fone, email, e);
+                Cliente c3 = new Cliente(nome, cpf, fone, email, e);
 
-            biblioteca.addClientes(c3);
-            biblioteca.getClientes().sort(Comparator.comparing(Cliente::getNome));
-            
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                biblioteca.addClientes(c3);
+                biblioteca.getClientes().sort(Comparator.comparing(Cliente::getNome));
+
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            } 
         }
         
         jBNovo.setEnabled(true);
@@ -591,7 +578,6 @@ public class JFCliente extends javax.swing.JFrame {
         jTRua.setText(c.getEndereco().getRua());
         jTCep.setText(c.getEndereco().getCep());
         jTNumero.setText(""+ c.getEndereco().getNumero());
-        jTComplemento.setText(c.getEndereco().getComplemento());
         
         jBAlterar.setEnabled(true);
         jBExcluir.setEnabled(true);
@@ -608,7 +594,6 @@ public class JFCliente extends javax.swing.JFrame {
         jTRua.setEditable(false);
         jTCep.setEditable(false);
         jTNome.setEditable(false);
-        jTComplemento.setEditable(false);
         jTNumero.setEditable(false);
     }
     
@@ -623,7 +608,6 @@ public class JFCliente extends javax.swing.JFrame {
         jTRua.setEditable(true);
         jTCep.setEditable(true);
         jTNome.setEditable(true);
-        jTComplemento.setEditable(true);
         jTNumero.setEditable(true);
     }
     
@@ -638,7 +622,6 @@ public class JFCliente extends javax.swing.JFrame {
         jTRua.setText("");
         jTCep.setText("");
         jTNome.setText("");
-        jTComplemento.setText("");
         jTNumero.setText("");
     }
     
@@ -690,7 +673,6 @@ public class JFCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -704,7 +686,6 @@ public class JFCliente extends javax.swing.JFrame {
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTCep;
     private javax.swing.JTextField jTCidade;
-    private javax.swing.JTextField jTComplemento;
     private javax.swing.JTextField jTCpf;
     private javax.swing.JTextField jTEmail;
     private javax.swing.JTextField jTFCpfPesquisa;

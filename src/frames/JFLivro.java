@@ -556,9 +556,24 @@ public class JFLivro extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Livro alterado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            Livro l = new Livro(titulo, editora, isbn, autor, ano, numP);
-            biblioteca.addItens(l);
-            JOptionPane.showMessageDialog(null, "Livro incluido com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            boolean existe = false;
+            
+            for(ItemAcervo i : biblioteca.getItens()){
+                if(i instanceof Livro){
+                    if(i.getTitulo().toLowerCase().equals(titulo.toLowerCase())){
+                        existe = true;
+                        break;
+                    }      
+                }
+            }
+            
+            if(existe){
+                JOptionPane.showMessageDialog(null, "Já existe um Livro cadastrado com este nome!", "Erro", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Livro l = new Livro(titulo, editora, isbn, autor, ano, numP);
+                biblioteca.addItens(l);
+                JOptionPane.showMessageDialog(null, "Livro incluido com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         
         jBNovo.setEnabled(true);

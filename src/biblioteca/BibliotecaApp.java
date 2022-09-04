@@ -43,6 +43,7 @@ public class BibliotecaApp {
         }
         
         ItemAcervo.setTotalItens(biblioteca.getItens().size());
+        Pessoa.setNumPessoa(biblioteca.getClientes().size());
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

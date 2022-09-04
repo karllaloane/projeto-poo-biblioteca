@@ -50,6 +50,9 @@ public class JFAjuda extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -73,7 +76,7 @@ public class JFAjuda extends javax.swing.JFrame {
 
         jLabel7.setText("- O empréstimo de um livro possui prazo para devolução de 7 dias consecutivos.");
 
-        jLabel8.setText("- O empréstimo de um periódico possui prazo para devolução de 7 dias consecutivos.");
+        jLabel8.setText("- O empréstimo de um periódico possui prazo para devolução de 5 dias consecutivos.");
 
         jLabel9.setText("- O valor diário da multa é de R$ 0,50 por dia de atraso.");
 
@@ -84,6 +87,12 @@ public class JFAjuda extends javax.swing.JFrame {
         jLabel12.setText("- Um item emprestado não pode ser excluído do sistema.");
 
         jLabel13.setText("- Um cliente com penalidades não pode ser excluído do sistema.");
+
+        jLabel14.setText("- Não existe dois livros com o mesmo nome no acervo.");
+
+        jLabel15.setText("- Não existe dois periódicos com o mesmo e volume nome no acervo.");
+
+        jLabel16.setText("- Não é possível cadastrar dois clientes com o mesmo CPF.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,6 +111,9 @@ public class JFAjuda extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14)
                     .addComponent(jLabel13)
                     .addComponent(jLabel12)
                     .addComponent(jLabel11)
@@ -146,7 +158,13 @@ public class JFAjuda extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel16)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,8 +180,8 @@ public class JFAjuda extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -217,6 +235,9 @@ public class JFAjuda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -89,6 +89,8 @@ public class Cliente extends Pessoa {
             
             if(multa > 0) { //se a multa for maior que zero, usuario e penalizado
                     setPenalizado(true);
+            } else {
+                multa = 0;
             }
             
             this.quantEmprestimosAtivos--;
@@ -121,6 +123,7 @@ public class Cliente extends Pessoa {
                 //vai pegar os emprestimos que esta multado, alterar estado da multa
 
                 valorTotal += emprestimos.get(i).getValorMulta();
+                System.out.println(emprestimos.get(i).getValorMulta());
 
                 if(emprestimos.get(i).getEstaMultado()) {
                         emprestimos.get(i).setMultaPaga(true);

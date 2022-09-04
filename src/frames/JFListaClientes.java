@@ -22,7 +22,7 @@ public class JFListaClientes extends javax.swing.JFrame {
 
     private TelaPrincipal telaPrincipal;
     private Biblioteca biblioteca;
-    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"Nome", "CPF", "Telefone", "Empréstimos ativos", "Penalizado?"});
+    DefaultTableModel tmLista = new DefaultTableModel(null, new String[]{"ID","Nome", "CPF", "Telefone", "Empréstimos ativos", "Penalizado?"});
     
     /**
      * Creates new form JFListaClientes
@@ -40,16 +40,18 @@ public class JFListaClientes extends javax.swing.JFrame {
         
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();        
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.getColumnModel().getColumn(5).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(centralizado);
         jTable1.getColumnModel().getColumn(2).setCellRenderer(centralizado);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(centralizado);
         
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(250);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(70);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
 
         listarTodos();
     }
@@ -60,18 +62,19 @@ public class JFListaClientes extends javax.swing.JFrame {
 
         limparTabela();
         
-        String[] linha = new String[] {null, null, null, null};
+        String[] linha = new String[] {null, null, null, null, null};
         
         for (int i = 0; i < cliente.size(); i++) {
             tmLista.addRow(linha);
-            tmLista.setValueAt(" " + cliente.get(i).getNome(), i, 0);
-            tmLista.setValueAt(cliente.get(i).getCpf(), i, 1);
-            tmLista.setValueAt(cliente.get(i).getTelefone(), i, 2);
-            tmLista.setValueAt(cliente.get(i).getQuantEmprestimosAtivos(), i, 3);
+            tmLista.setValueAt(cliente.get(i).getID(), i, 0);
+            tmLista.setValueAt(" " + cliente.get(i).getNome(), i, 1);
+            tmLista.setValueAt(cliente.get(i).getCpf(), i, 2);
+            tmLista.setValueAt(cliente.get(i).getTelefone(), i, 3);
+            tmLista.setValueAt(cliente.get(i).getQuantEmprestimosAtivos(), i, 4);
             if(cliente.get(i).isPenalizado()){
-                tmLista.setValueAt("Sim", i, 4);
+                tmLista.setValueAt("Sim", i, 5);
             } else {
-                tmLista.setValueAt("Não", i, 4);
+                tmLista.setValueAt("Não", i, 5);
             }
         }
     }

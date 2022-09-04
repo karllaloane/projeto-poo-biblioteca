@@ -544,9 +544,25 @@ public class JFPeriodico extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Periódico alterado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            Periodico p = new Periodico(titulo, editora, volume, numero, dataPubli);
-            biblioteca.addItens(p);
-            JOptionPane.showMessageDialog(null, "Periódico incluido com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            
+            boolean existe = false;
+            
+            for(ItemAcervo i : biblioteca.getItens()){
+                if(i instanceof Periodico){
+                    if(i.getTitulo().toLowerCase().equals(titulo.toLowerCase()) && ((Periodico) i).getVolume() == volume){
+                        existe = true;
+                        break;
+                    }      
+                }
+            }
+            
+            if(existe){
+                JOptionPane.showMessageDialog(null, "Já existe um Periódico cadastrado com este nome e volume!", "Erro", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Periodico p = new Periodico(titulo, editora, volume, numero, dataPubli);
+                biblioteca.addItens(p);
+                JOptionPane.showMessageDialog(null, "Periódico incluido com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         jBNovo.setEnabled(true);

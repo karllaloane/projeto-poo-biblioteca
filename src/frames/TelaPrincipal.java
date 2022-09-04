@@ -368,7 +368,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 + "Discentes:\n"
                 + "      - Gabriel Reis\n"
                 + "      - Karlla Loane\n"
-                + "      - Luiz Felipe\n", "Error", JOptionPane.INFORMATION_MESSAGE);
+                + "      - Luiz Felipe\n", "Sobre", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
     /**
