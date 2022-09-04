@@ -5,6 +5,10 @@ package biblioteca;
  * @since release 2
  */
 public class ClienteComPendenciaException extends RuntimeException {
+    /** Construtor que recebe uma String com a mensagem da exceção
+     * 
+     * @param msg - String
+     */
     public ClienteComPendenciaException(String msg) {
         super(msg);
     }

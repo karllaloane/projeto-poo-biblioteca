@@ -30,6 +30,12 @@ public class Emprestimo implements Publicavel, Serializable{
     private Cliente cliente;
     private ItemAcervo item;
 
+    /** Construtor que recebe parâmetros e realiza a atribuição correlata
+     * 
+     * @param cliente
+     * @param item
+     * @param dataEmprestimo 
+     */
     public Emprestimo(Cliente cliente, ItemAcervo item, LocalDate dataEmprestimo) {
 
             this.quantRenovado = 0;
@@ -73,7 +79,7 @@ public class Emprestimo implements Publicavel, Serializable{
                         + "Proceda à devolução do item!");
         
         if(this.dataEmprestimo.isAfter(data))
-            throw new DateTimeException("A data informada é anterior ao empréstimo");
+            throw new DateTimeException("A data informada é anterior ao empréstimo\n");
 
         if(quantRenovado < maxRenovacao) { //arrumar melhor jeito de guardar a quant de emprestimos
 

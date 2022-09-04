@@ -6,6 +6,10 @@ package biblioteca;
  * @since release 2
  */
 public class BuscaFalhouException extends RuntimeException {
+    /** Construtor que recebe uma String com a mensagem da exceção
+     * 
+     * @param msg - String
+     */
     public BuscaFalhouException(String msg) {
         super(msg);
     }

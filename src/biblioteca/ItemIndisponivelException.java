@@ -7,6 +7,10 @@ package biblioteca;
  * @since release 1
  */
 public class ItemIndisponivelException extends RuntimeException {
+    /** Construtor que recebe uma String consistente na mensagem da exceção
+     * 
+     * @param msg - String
+     */
     public ItemIndisponivelException(String msg) {
         super(msg);
     }

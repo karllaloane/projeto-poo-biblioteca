@@ -17,10 +17,21 @@ public class Cliente extends Pessoa {
     private ArrayList<Emprestimo> emprestimos;
     private int quantEmprestimosAtivos;
 
+    /** Construtor que não recebe parâmetros e chama o construtor da classe mãe.
+     * 
+     */
     public Cliente() {
             super();
     }
 
+    /** Construtor que recebe parâmetros e realiza a atribuição respectiva
+     * 
+     * @param nome
+     * @param cpf
+     * @param telefone
+     * @param email
+     * @param endereco 
+     */
     public Cliente(String nome, String cpf, String telefone, String email, Endereco endereco) {
             super(nome, cpf, telefone, email, endereco);
             emprestimos = new ArrayList<Emprestimo>();

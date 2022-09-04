@@ -19,7 +19,12 @@ public final class Biblioteca {
 	private ArrayList<Cliente> clientes;
 	
 	//----------------------- Singleton ---------------------------//
-	
+        
+        
+	/** Construtor da classe, que insere os atributos nome e cnpj, bem como
+         * adiciona os ArrayList de ItemAcervo e Cliente
+         * 
+         */
 	private Biblioteca() {
 		this.setNome("Biblioteca");
 		this.setCnpj("123456/0000");

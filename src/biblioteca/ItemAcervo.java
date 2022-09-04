@@ -22,10 +22,18 @@ public abstract class ItemAcervo implements Serializable{
     private Reserva reserva;
     private double multaDiaria = (double) 0.50; //Pensar em uma melhor forma de armazenar
 
+    /** Construtor da classe que não recebe parâmetros, nem realiza atribuições
+     * 
+     */
     public ItemAcervo() {
 
     }
 
+    /** Construtor da classe que recebe parâmetros e realiza atribuições
+     * 
+     * @param titulo - String
+     * @param editora - String
+     */
     public ItemAcervo(String titulo, String editora) {
             setDisponivel(true);
             setReservado(false);

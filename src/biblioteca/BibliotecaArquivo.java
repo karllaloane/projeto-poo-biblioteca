@@ -15,13 +15,16 @@ import java.util.ArrayList;
  * @version 1.0
  * @since release 1
  *
- * @author karlla
  */
 public class BibliotecaArquivo {
     private File clienteFile;
     private File itemFile;
 
-    
+    /** Construtor da classe, que atribui os arquivos aos atributos e, em caso 
+     * de erro, lança a IOException
+     * 
+     * @throws IOException 
+     */
     public BibliotecaArquivo() throws IOException{
         clienteFile = new File("cliente.txt");
         itemFile = new File("acervo.txt");
@@ -34,6 +37,13 @@ public class BibliotecaArquivo {
         }
     }
     
+    /** Método que retorna a lista de clientes da biblioteca
+     * 
+     * @return ArrayList de cliente
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public ArrayList<Cliente> getListaCliente() throws FileNotFoundException, IOException, ClassNotFoundException{
         ArrayList<Cliente> clientes = new ArrayList<>();
         ObjectInputStream objIS = null;
@@ -47,6 +57,13 @@ public class BibliotecaArquivo {
         return clientes;        
     }
     
+    /** Método que retorna a lista de itens da biblioteca
+     * 
+     * @return ArrayList de ItemAcervo
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public ArrayList<ItemAcervo> getListaAcervo() throws FileNotFoundException, IOException, ClassNotFoundException{
         ArrayList<ItemAcervo> acervo;
         ObjectInputStream objIS = null;
@@ -62,6 +79,11 @@ public class BibliotecaArquivo {
         return acervo;        
     }
     
+    /** Método que recebe a lista de clientes e a grava num arquivo
+     * 
+     * @param cliente
+     * @throws IOException 
+     */
     public void gravarCliente(ArrayList<Cliente> cliente) throws IOException{
         FileOutputStream caminho = new FileOutputStream("cliente.txt");
         ObjectOutputStream oos = new ObjectOutputStream(caminho);
@@ -72,6 +94,11 @@ public class BibliotecaArquivo {
 	caminho.close();
     }
     
+    /** Método que recebe uma lista de itens e a grava num arquivo
+     * 
+     * @param item
+     * @throws IOException 
+     */
     public void gravarAcervo(ArrayList<ItemAcervo> item) throws IOException{
         FileOutputStream caminho = new FileOutputStream("acervo.txt");
         ObjectOutputStream oos = new ObjectOutputStream(caminho);

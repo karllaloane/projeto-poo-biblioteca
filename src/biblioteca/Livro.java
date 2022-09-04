@@ -17,6 +17,16 @@ public class Livro extends ItemAcervo implements Serializable {
     private int anoPublicacao;
     private int numPaginas;
     private int diasEmprestimo = 7;
+    
+    /** Construtor que recebe parâmetros e realiza as respectivas atribuições
+     * 
+     * @param titulo - String
+     * @param editora - String
+     * @param isbn - String
+     * @param autor - String
+     * @param anoPublicacao - int
+     * @param numPaginas - int
+     */
 
     public Livro(String titulo, String editora, String isbn, String autor, int anoPublicacao, int numPaginas) {
             super(titulo, editora);
