@@ -5,8 +5,9 @@ import biblioteca.Cliente;
 import biblioteca.Endereco;
 import biblioteca.Livro;
 import java.time.LocalDate;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import static junit.framework.Assert.assertEquals;
+import org.junit.Test;
+
 
 /** Classe que implementa testes de métodos da classe Biblioteca
  *
@@ -24,7 +25,7 @@ public class BibliotecaTest {
 
         biblioteca.addItens(lucidez);
 
-        Assertions.assertEquals(lucidez, biblioteca.procurarItem("Ensaio sobre a lucidez"));
+       assertEquals(lucidez, biblioteca.procurarItem("Ensaio sobre a lucidez"));
 
     }
     
@@ -32,7 +33,7 @@ public class BibliotecaTest {
     public void testProcurarItemDeveRetornarNull() {
         Biblioteca biblioteca = Biblioteca.getInstance();
 
-        Assertions.assertEquals(null, biblioteca.procurarItem("Ensaio sobre a cegueira"));
+        assertEquals(null, biblioteca.procurarItem("Ensaio sobre a cegueira"));
     }
 
     @Test
@@ -44,7 +45,7 @@ public class BibliotecaTest {
 
         biblioteca.addClientes(luis);
 
-        Assertions.assertEquals(luis, biblioteca.procurarCliente("Luis Felipe"));
+        assertEquals(luis, biblioteca.procurarCliente("Luis Felipe"));
     }
 
     @Test
@@ -52,7 +53,7 @@ public class BibliotecaTest {
         Biblioteca biblioteca = Biblioteca.getInstance();
 
 
-        Assertions.assertEquals(null, biblioteca.procurarCliente("Luis Alberto"));
+        assertEquals(null, biblioteca.procurarCliente("Luis Alberto"));
     }
 
     @Test
@@ -84,6 +85,6 @@ public class BibliotecaTest {
         lais.devolverItem(0, LocalDate.of(2022,8,9));
 
 
-        Assertions.assertEquals(1.00, biblioteca.totalMultasPendentes());
+        assertEquals(1.00, biblioteca.totalMultasPendentes());
     }
 }
