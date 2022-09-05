@@ -1,6 +1,7 @@
 package tests;
 
 import biblioteca.Biblioteca;
+import biblioteca.BuscaFalhouException;
 import biblioteca.Cliente;
 import biblioteca.Endereco;
 import biblioteca.Livro;
@@ -20,20 +21,20 @@ public class BibliotecaTest {
     public void testProcurarItemDeveRetornarItem() {
         Biblioteca biblioteca = Biblioteca.getInstance();
 
-        Livro lucidez = new Livro("Ensaio sobre a lucidez", "Cia das letras", "xxxx",
-                "Jose Saramago", 2004, 250);
+        Livro lucidez = new Livro("Jornada do Elefante", "Cia das letras", "xxxx",
+                "Jose Saramago", 2008, 250);
 
         biblioteca.addItens(lucidez);
 
-       assertEquals(lucidez, biblioteca.procurarItem("Ensaio sobre a lucidez"));
+       assertEquals(lucidez, biblioteca.procurarItem("Jornada do Elefante"));
 
     }
     
-    @Test
-    public void testProcurarItemDeveRetornarNull() {
+    @Test (expected = BuscaFalhouException.class)
+    public void testProcurarItemDeveLancarExcecao() {
         Biblioteca biblioteca = Biblioteca.getInstance();
 
-        assertEquals(null, biblioteca.procurarItem("Ensaio sobre a cegueira"));
+        biblioteca.procurarItem("Jangada de Pedra");
     }
 
     @Test
@@ -45,15 +46,15 @@ public class BibliotecaTest {
 
         biblioteca.addClientes(luis);
 
-        assertEquals(luis, biblioteca.procurarCliente("Luis Felipe"));
+        assertEquals(luis, biblioteca.procurarCliente("1234567-77"));
     }
 
-    @Test
-    public void testProcuraClienteDeveRetornarNull() {
+    @Test(expected = BuscaFalhouException.class)
+    public void testProcuraClienteDeveLancarExcecao() {
         Biblioteca biblioteca = Biblioteca.getInstance();
 
 
-        assertEquals(null, biblioteca.procurarCliente("Luis Alberto"));
+        biblioteca.procurarCliente("Luis Alberto");
     }
 
     @Test
