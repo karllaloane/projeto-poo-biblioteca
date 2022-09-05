@@ -3,7 +3,9 @@ package tests;
 import biblioteca.Biblioteca;
 import biblioteca.BuscaFalhouException;
 import biblioteca.Cliente;
+import biblioteca.ClienteComPendenciaException;
 import biblioteca.Endereco;
+import biblioteca.ItemIndisponivelException;
 import biblioteca.Livro;
 import java.time.LocalDate;
 import static junit.framework.Assert.assertEquals;
@@ -87,5 +89,41 @@ public class BibliotecaTest {
 
 
         assertEquals(1.00, biblioteca.totalMultasPendentes());
+    }
+    
+    @Test (expected = ClienteComPendenciaException.class)
+    public void testRemoveClienteComPendenciaDeveLancarExcecao() {
+        Biblioteca biblioteca = Biblioteca.getInstance();
+        
+        Cliente luis = new Cliente("Luis Felipe", "1234567-77", "32112233",
+                "luisf@luis.com", new Endereco(null, null, null, null, 0));
+
+        biblioteca.addClientes(luis);
+
+        Livro lucidez = new Livro("Ensaio sobre a lucidez", "Cia das letras", "xxxx",
+                "Jose Saramago", 2004, 250);
+
+        luis.realizarEmprestimo(lucidez, LocalDate.of(2022,8,1));
+
+        luis.devolverItem(0, LocalDate.of(2022,8,18));
+        
+        biblioteca.removeCliente(luis);
+    }
+    
+    @Test (expected = ItemIndisponivelException.class)
+    public void testRemoveItemIndisponivelDeveLancarExcecao() {
+        Biblioteca biblioteca = Biblioteca.getInstance();
+        
+        Cliente luis = new Cliente("Luis Felipe", "1234567-77", "32112233",
+                "luisf@luis.com", new Endereco(null, null, null, null, 0));
+
+        biblioteca.addClientes(luis);
+
+        Livro lucidez = new Livro("Ensaio sobre a lucidez", "Cia das letras", "xxxx",
+                "Jose Saramago", 2004, 250);
+
+        luis.realizarEmprestimo(lucidez, LocalDate.of(2022,8,1));
+        
+        biblioteca.removeItem(lucidez);
     }
 }
