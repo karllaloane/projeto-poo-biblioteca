@@ -96,6 +96,7 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         jBRenovar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Devolver Empréstimo");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -117,6 +118,11 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         jTFCpfPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFCpfPesquisaActionPerformed(evt);
+            }
+        });
+        jTFCpfPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCpfPesquisaKeyTyped(evt);
             }
         });
 
@@ -588,6 +594,14 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         telaPrincipal.setEnabled(true);
         telaPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void jTFCpfPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCpfPesquisaKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFCpfPesquisaKeyTyped
 
     private void exibirEmprestimos(){
         limparTabela();

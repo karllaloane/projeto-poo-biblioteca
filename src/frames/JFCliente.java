@@ -84,6 +84,7 @@ public class JFCliente extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Clientes");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -456,7 +457,6 @@ public class JFCliente extends javax.swing.JFrame {
 
     private void jTFCpfPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCpfPesquisaActionPerformed
         // TODO add your handling code here:
-        //System.out.println("CLicou!!!");
     }//GEN-LAST:event_jTFCpfPesquisaActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
