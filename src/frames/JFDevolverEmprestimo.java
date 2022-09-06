@@ -230,6 +230,12 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
 
         jLabel8.setText("Dia:");
 
+        jTFDia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFDiaKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("Mês:");
 
         jTFMes.addActionListener(new java.awt.event.ActionListener() {
@@ -237,8 +243,19 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
                 jTFMesActionPerformed(evt);
             }
         });
+        jTFMes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFMesKeyTyped(evt);
+            }
+        });
 
         jLabel11.setText("Ano:");
+
+        jTFAno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFAnoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -604,6 +621,30 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTFCpfPesquisaKeyTyped
+
+    private void jTFDiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDiaKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFDiaKeyTyped
+
+    private void jTFMesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFMesKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFMesKeyTyped
+
+    private void jTFAnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAnoKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFAnoKeyTyped
 
     private void exibirEmprestimos(){
         limparTabela();

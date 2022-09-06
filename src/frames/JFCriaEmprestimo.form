@@ -522,6 +522,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFDia">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFDiaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -531,6 +534,7 @@
         <Component class="javax.swing.JTextField" name="jTFMes">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFMesActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFMesKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
@@ -539,6 +543,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFAno">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFAnoKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
