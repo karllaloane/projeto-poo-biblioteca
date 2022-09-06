@@ -6,8 +6,9 @@ import java.time.LocalDate;
 /** Classe que representa uma reserva da biblioteca, que armazena: a data da reserva e
  * o cliente que a realizou.
  * 
- * @release 1.0
+ * 
  * @since release 1
+ * @version 1.0
  * 
  */
 public class Reserva implements Publicavel, Serializable{
