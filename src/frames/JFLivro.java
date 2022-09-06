@@ -493,6 +493,7 @@ public class JFLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         habilitaCampos();
+        jTFNome.setEditable(false);
         jBSalvar.setEnabled(true);
         jBNovo.setEnabled(false);
         jBExcluir.setEnabled(false);

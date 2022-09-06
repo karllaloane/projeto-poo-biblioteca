@@ -401,6 +401,7 @@ public class JFCliente extends javax.swing.JFrame {
     private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
         // TODO add your handling code here:
         habilitaCampos();
+        jTCpf.setEditable(false);
         jBSalvar.setEnabled(true);
         jBNovo.setEnabled(false);
         jBExcluir.setEnabled(false);
