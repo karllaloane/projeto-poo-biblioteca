@@ -1,5 +1,6 @@
 package biblioteca;
 
+import exceptions.ItemIndisponivelException;
 import java.io.Serializable;
 import java.time.DateTimeException;
 import java.time.LocalDate;

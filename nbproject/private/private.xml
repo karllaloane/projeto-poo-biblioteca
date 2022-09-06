@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/karll/OneDrive/Documentos/GitHub/Biblioteca/src/frames/JFPeriodico.java</file>
-            <file>file:/C:/Users/karll/OneDrive/Documentos/GitHub/Biblioteca/src/frames/JFCriaEmprestimo.java</file>
-            <file>file:/C:/Users/karll/OneDrive/Documentos/GitHub/Biblioteca/src/frames/JFDevolverEmprestimo.java</file>
-            <file>file:/C:/Users/karll/OneDrive/Documentos/GitHub/Biblioteca/src/frames/JFCancelaReserva.java</file>
-            <file>file:/C:/Users/karll/OneDrive/Documentos/GitHub/Biblioteca/src/frames/JFLivro.java</file>
+            <file>file:/Users/gabrielsilvestre/Developer/workspace/projeto-poo-biblioteca/projeto-poo-biblioteca/test/tests/BibliotecaTest.java</file>
+            <file>file:/Users/gabrielsilvestre/Developer/workspace/projeto-poo-biblioteca/projeto-poo-biblioteca/src/biblioteca/Publicavel.java</file>
+            <file>file:/Users/gabrielsilvestre/Developer/workspace/projeto-poo-biblioteca/projeto-poo-biblioteca/src/biblioteca/Biblioteca.java</file>
+            <file>file:/Users/gabrielsilvestre/Developer/workspace/projeto-poo-biblioteca/projeto-poo-biblioteca/src/biblioteca/Pessoa.java</file>
         </group>
     </open-files>
 </project-private>

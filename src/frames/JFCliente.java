@@ -1,5 +1,7 @@
 package frames;
 
+import exceptions.ClienteComPendenciaException;
+import exceptions.BuscaFalhouException;
 import biblioteca.*;
 import java.text.ParseException;
 import java.util.Comparator;

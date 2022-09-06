@@ -1,4 +1,4 @@
-package biblioteca;
+package exceptions;
 
 /** Classe que representa uma exceção que herda da classe RuntimeException
  *@version 1.0

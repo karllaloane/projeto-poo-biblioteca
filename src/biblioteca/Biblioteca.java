@@ -1,5 +1,8 @@
 package biblioteca;
 
+import exceptions.ItemIndisponivelException;
+import exceptions.ClienteComPendenciaException;
+import exceptions.BuscaFalhouException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -13,9 +16,11 @@ import java.util.ArrayList;
 public final class Biblioteca {
 	
 	private String nome;
+        
 	private String cnpj;
 	
 	private ArrayList<ItemAcervo> itens;	
+        
 	private ArrayList<Cliente> clientes;
 	
 	//----------------------- Singleton ---------------------------//

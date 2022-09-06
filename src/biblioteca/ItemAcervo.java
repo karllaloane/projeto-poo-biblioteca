@@ -1,5 +1,6 @@
 package biblioteca;
 
+import exceptions.ClienteComPendenciaException;
 import java.io.Serializable;
 import java.time.LocalDate;
 

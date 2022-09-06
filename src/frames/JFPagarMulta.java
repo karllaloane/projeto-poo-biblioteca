@@ -4,6 +4,7 @@
  */
 package frames;
 
+import exceptions.BuscaFalhouException;
 import biblioteca.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

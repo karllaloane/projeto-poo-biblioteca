@@ -1,4 +1,4 @@
-package biblioteca;
+package exceptions;
 
 /** Classe criada para representar uma exceção de item indisponível, que herda
  * de RuntimeException

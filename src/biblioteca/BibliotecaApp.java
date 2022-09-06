@@ -11,6 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+/** Classe principal do aplicativo
+ * 
+ * @version 1.0
+ */
 public class BibliotecaApp {
 
     /**

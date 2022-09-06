@@ -3,7 +3,7 @@ package tests;
 
 import biblioteca.Cliente;
 import biblioteca.Endereco;
-import biblioteca.ItemIndisponivelException;
+import exceptions.ItemIndisponivelException;
 import biblioteca.Livro;
 import java.time.DateTimeException;
 import java.time.LocalDate;

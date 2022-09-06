@@ -1,13 +1,15 @@
 package tests;
 
 import biblioteca.Biblioteca;
-import biblioteca.BuscaFalhouException;
+import exceptions.BuscaFalhouException;
 import biblioteca.Cliente;
-import biblioteca.ClienteComPendenciaException;
+import exceptions.ClienteComPendenciaException;
 import biblioteca.Endereco;
-import biblioteca.ItemIndisponivelException;
+import exceptions.ItemIndisponivelException;
 import biblioteca.Livro;
+import biblioteca.Periodico;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import static junit.framework.Assert.assertEquals;
 import org.junit.Test;
 
@@ -125,5 +127,74 @@ public class BibliotecaTest {
         luis.realizarEmprestimo(lucidez, LocalDate.of(2022,8,1));
         
         biblioteca.removeItem(lucidez);
+    }
+    
+    @Test
+    public void testListarLivrosNomeDeveRetornarArrayList() {
+        
+        Biblioteca biblioteca = Biblioteca.getInstance();
+        
+        Livro livro1 = new Livro("Livro 1", "Cia das letras", "xxxx",
+                "Jose Saramago", 2004, 250);
+
+        Livro livro2 = new Livro("Livro 2", "Cia das letras", "xxxx",
+                "Jose Saramago", 1995, 250);
+
+        biblioteca.addItens(livro1);
+        biblioteca.addItens(livro2);
+        
+        ArrayList<Livro> teste = new ArrayList<>();
+        
+        teste.add(livro1);
+        teste.add(livro2);
+        
+        
+        assertEquals(teste, biblioteca.listarLivrosNome("livro"));
+    }
+    
+    @Test
+    public void testListarLivrosAutorDeveRetornarArrayList() {
+        
+        Biblioteca biblioteca = Biblioteca.getInstance();
+        
+        Livro livro3 = new Livro("Livro 3", "Cia das letras", "xxxx",
+                "Aloisio", 2004, 250);
+
+        Livro livro4 = new Livro("Livro 4", "Cia das letras", "xxxx",
+                "Aloisio", 1995, 250);
+
+        biblioteca.addItens(livro3);
+        biblioteca.addItens(livro4);
+        
+        ArrayList<Livro> teste = new ArrayList<>();
+        
+        teste.add(livro3);
+        teste.add(livro4);
+        
+        
+        assertEquals(teste, biblioteca.listarLivrosAutor("Aloisio"));
+    }
+    
+    @Test
+    public void testListarPeriodicosNomeDeveRetornarArrayList() {
+        
+        Biblioteca biblioteca = Biblioteca.getInstance();
+        
+        Periodico periodico1 = new Periodico("Periodico 1", "Cia das letras", 1,
+                2, "11/11/2000");
+
+        Periodico periodico2 = new Periodico("Periodico 2", "Cia das letras", 1,
+                2, "11/12/2000");
+
+        biblioteca.addItens(periodico1);
+        biblioteca.addItens(periodico2);
+        
+        ArrayList<Periodico> teste = new ArrayList<>();
+        
+        teste.add(periodico1);
+        teste.add(periodico2);
+        
+        
+        assertEquals(teste, biblioteca.listarPeriodicosNome("peri"));
     }
 }

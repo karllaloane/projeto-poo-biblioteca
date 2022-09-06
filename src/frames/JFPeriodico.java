@@ -4,6 +4,8 @@
  */
 package frames;
 
+import exceptions.ItemIndisponivelException;
+import exceptions.BuscaFalhouException;
 import biblioteca.*;
 import java.awt.Color;
 import java.time.Clock;

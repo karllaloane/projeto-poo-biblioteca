@@ -5,7 +5,7 @@
 package frames;
 
 import biblioteca.Biblioteca;
-import biblioteca.BuscaFalhouException;
+import exceptions.BuscaFalhouException;
 import biblioteca.ItemAcervo;
 import biblioteca.Livro;
 import biblioteca.Periodico;
