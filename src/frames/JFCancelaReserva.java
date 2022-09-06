@@ -40,6 +40,8 @@ public class JFCancelaReserva extends javax.swing.JFrame {
         jBConfirma.setEnabled(false);
         jTFNome.setEditable(false);
         jTFLivro.setEditable(false);
+        
+        jTable1.setDefaultEditor(Object.class, null);
     }
 
     /**

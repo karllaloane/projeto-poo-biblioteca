@@ -36,6 +36,8 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
         this.telaPrincipal = telaPrincipal;
         this.biblioteca = b;
         
+        jTable1.setDefaultEditor(Object.class, null);
+        
         jTFNome.setEditable(false);
         jTFCpf.setEditable(false);
         jTFLivro.setEditable(false);
@@ -45,6 +47,8 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
         jTFLivro.setEditable(false);
         jBReservar.setEnabled(false);
         jBEmprestar.setEnabled(false);
+        
+        jTable1.setDefaultEditor(Object.class, null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -780,6 +784,7 @@ public class JFCriaEmprestimo extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

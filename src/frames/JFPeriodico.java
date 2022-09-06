@@ -42,6 +42,8 @@ public class JFPeriodico extends javax.swing.JFrame {
         jBExcluir.setEnabled(false);
         jBSalvar.setEnabled(false);
         
+        jTable1.setDefaultEditor(Object.class, null);
+        
         desabilitaCampos();
     }
 

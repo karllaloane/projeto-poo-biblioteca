@@ -41,6 +41,8 @@ public class JFDevolverEmprestimo extends javax.swing.JFrame {
         jTFCpf.setEditable(false);
         jTFLivro.setEditable(false);
         
+        jTable1.setDefaultEditor(Object.class, null);
+        
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();        
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
        
