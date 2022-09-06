@@ -3,6 +3,7 @@ package tests;
 import biblioteca.Biblioteca;
 import exceptions.BuscaFalhouException;
 import biblioteca.Cliente;
+import biblioteca.Emprestimo;
 import exceptions.ClienteComPendenciaException;
 import biblioteca.Endereco;
 import exceptions.ItemIndisponivelException;
@@ -196,5 +197,41 @@ public class BibliotecaTest {
         
         
         assertEquals(teste, biblioteca.listarPeriodicosNome("peri"));
+    }
+    
+    @Test
+    public void testBuscaEmprestimosEmAbertoDeveRetornarArrayList() {
+        Biblioteca biblioteca = Biblioteca.getInstance();
+        
+        Cliente luis = new Cliente("Luis Felipe", "1234567-77", "32112233",
+                "luisf@luis.com", new Endereco(null, null, null, null, 0));
+        
+        Cliente lais = new Cliente("Lais Silva", "1234567-78", "32112233",
+                "luisf@luis.com", new Endereco(null, null, null, null, 0));
+
+        biblioteca.addClientes(luis);
+        biblioteca.addClientes(lais);
+
+        Livro aberto1 = new Livro("Aberto 1", "Cia das letras", "xxxx",
+                "Jose Saramago", 2004, 250);
+        
+        Livro aberto2 = new Livro("Aberto 2", "Cia das letras", "xxxx",
+                "Jose Saramago", 2004, 250);
+        
+        Livro fechado = new Livro("Aberto 2", "Cia das letras", "xxxx",
+                "Jose Saramago", 2004, 250);
+        
+        luis.realizarEmprestimo(aberto1, LocalDate.of(2022,8,1));
+        luis.realizarEmprestimo(aberto2, LocalDate.of(2022,8,1));
+        lais.realizarEmprestimo(fechado, LocalDate.of(2022,8,1));
+        
+        lais.devolverItem(0, LocalDate.of(2022,8,2));
+        
+        ArrayList<Emprestimo> teste = new ArrayList<>();
+        
+        teste.add(luis.getEmprestimos().get(0));
+        teste.add(luis.getEmprestimos().get(1));
+        
+        assertEquals(teste, biblioteca.buscaEmprestimosEmAberto());
     }
 }
